@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="MarkAddIn.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MarkAddIn"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1024" Background="LightSteelBlue">
+
+    <Grid x:Name="GlobalGrid">
+        <StackPanel Margin="10" Background="WhiteSmoke">
+            <Grid x:Name="UpTopGrid" 
+                  Height="38" Background="LightSteelBlue">
+            </Grid>
+
+            <Grid x:Name="MainTopGrid"
+                  Height="72" Background="LightGray">
+                <Label Content="Usuario" 
+                         HorizontalAlignment="Right" 
+                         VerticalAlignment="Center" 
+                         FontSize="20" 
+                         Foreground="Black"
+                         Margin="0,0,20,0"/>
+            </Grid>
+
+            <Grid x:Name="MainLeftGrid"
+                  Width="432" Height="418" Background="LightGray" Margin="537,10,-10,10">
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" ></Border>
+                <Button x:Name="AprobacionBtn" 
+                        Content="Approve" 
+                        Width="144" Height="40" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="10,300,10,10"
+                        BorderBrush="Gray"
+                        BorderThickness="1"/>
+            </Grid>
+            <Grid x:Name="MainRightGrid"
+            Width="432" Height="418" Background="LightGray" Margin="-537,-428,10,10">
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" ></Border>
+                <Button x:Name="FirmaBtn" 
+                        Content="Sign" 
+                        Width="144" Height="40" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="10,300,10,10"
+                        BorderBrush="Gray"
+                        BorderThickness="1"/>
+            </Grid>
+            <Grid x:Name="MainLowGrid"
+        Height="72" Background="LightGray" Margin="0,10,0,0">
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
