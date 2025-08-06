@@ -94,9 +94,6 @@ namespace Mark.Client
             }
 
 
-            
-
- 
 
             var interactiveBuilder = _mark.AcquireTokenInteractive(_scopes);
             interactiveBuilder = forceLogin
@@ -119,10 +116,7 @@ namespace Mark.Client
 
 
 
-
         }
-
-
 
         // metodo para cerrar sesión 
         public async Task SignOutAsync()

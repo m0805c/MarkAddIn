@@ -2,6 +2,7 @@
 
 using Mark.Client;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
 using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Ribbon;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -32,44 +34,60 @@ namespace MarkAddIn
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
 
-            var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
 
-            if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
+
+            try {
+
+                var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
+
+
+                if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
+                {
+                    string accessToken = resultado.AccessToken;
+                    var handler = new JwtSecurityTokenHandler();
+
+                    var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+
+                    /*ahora si hay que leer la info*/
+
+
+
+                    string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+                    string expiracion = resultado.ExpiresOn.ToString();
+                    string cuenta = resultado.Account?.Username;
+                    string scope = resultado.Scopes.FirstOrDefault();
+                    string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                    string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
+
+                    MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
+
+                }
+
+                else
+
+                {
+                    MessageBox.Show("No se pudo obtener un token de acceso. Por favor, inténtelo de nuevo.");
+                }
+
+
+            } catch (Exception ex )
             {
-                string accessToken = resultado.AccessToken; 
-                var handler = new JwtSecurityTokenHandler();
+                MessageBox.Show($"Error al obtener el token: {ex.Message}");
+            }
+            
 
-                var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
-
-                /*ahora si hay que leer la info*/
-
-
-                
-                string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
-                string expiracion= resultado.ExpiresOn.ToString();
-                string cuenta = resultado.Account?.Username;
-                string scope = resultado.Scopes.FirstOrDefault();
-                string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;   
-
-                MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
-
-                
+            {
+              
             }
 
-            /*hay que poner un else para manejar la excepción*/
-
-
-
-
-        }
-
 
 
 
 
 
         }
-   }
+    }
+}
+
 
