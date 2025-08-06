@@ -35,18 +35,8 @@ namespace MarkAddIn
             var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
 
-            
-
-            /*extracción de información*/
-            string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
-            string expiracion= resultado.ExpiresOn.ToString();
-            string cuenta = resultado.Account?.Username;
-            string scope = resultado.Scopes.FirstOrDefault();
-            string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-            string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;   
-
-            MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
-        }
+           
+            }
 
 
     }

@@ -1,5 +1,8 @@
-﻿using Mark.Client;
+﻿/*clase iniciadora de */
+
+using Mark.Client;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Client;
 using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Ribbon;
 using System;
@@ -23,8 +26,43 @@ namespace MarkAddIn
         private async void button1_Click(object sender, RibbonControlEventArgs e)
         {
 
+            /*carga de dependencias*/
 
-        
+            var servicios = Bootstrapper.ConfigureServices();
+            var authManager = servicios.GetRequiredService<AuthenticationManager>();
+            var tokenHandler = servicios.GetRequiredService<TokenHander>();
+
+            var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
+
+
+            if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
+            {
+                string accessToken = resultado.AccessToken; 
+                var handler = new JwtSecurityTokenHandler();
+
+                var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+
+                /*ahora si hay que leer la info*/
+
+
+                
+                string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+                string expiracion= resultado.ExpiresOn.ToString();
+                string cuenta = resultado.Account?.Username;
+                string scope = resultado.Scopes.FirstOrDefault();
+                string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;   
+
+                MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
+
+                
+            }
+
+            /*hay que poner un else para manejar la excepción*/
+
+
+
+
         }
 
 
