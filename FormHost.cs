@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +23,16 @@ namespace MarkAddIn
         {
          
 
-            ElementHost Host = new ElementHost();
-            Host.Dock = DockStyle.Fill;
+            Show();
 
-            //creación del elementhost
-
+            /*
+             {Dock = DockStyle.Fill,
+             Child = new MainWindow()
+            };
+            
+             this.Controls.Add(host);
+            this.Text = "Mark"; 
+            this.Size = new Size (800, 600);*/
 
 
         }

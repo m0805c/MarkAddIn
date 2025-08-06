@@ -33,11 +33,16 @@ namespace MarkAddIn
             var servicios = Bootstrapper.ConfigureServices();
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
+            var vista1 = servicios.GetRequiredService<FormHost>();
 
 
 
 
-            try {
+
+
+
+            try
+            {
 
                 var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
@@ -62,32 +67,41 @@ namespace MarkAddIn
 
                     MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
 
+                    /*aqui podria ser que se guarden las funciones*/
+
                 }
 
                 else
 
                 {
-                    MessageBox.Show("No se pudo obtener un token de acceso. Por favor, inténtelo de nuevo.");
+                    MessageBox.Show("primer catchup.");
                 }
 
 
-            } catch (Exception ex )
-            {
-                MessageBox.Show($"Error al obtener el token: {ex.Message}");
-            }
-            
-
-            {
-              
             }
 
+            catch (Exception error)
 
+            {
+                MessageBox.Show($"aqui es el error: {error.Message}");
+            }
 
+            finally
 
-
-
+            {
+                if (vista1.InvokeRequired)
+                {
+                    vista1.Invoke(new Action(() => vista1.Show()));
+                }
+                else
+                {
+                    vista1.Show();
+                }
+            }
         }
     }
 }
+
+
 
 
