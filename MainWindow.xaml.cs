@@ -26,7 +26,22 @@ namespace MarkAddIn
     public partial class MainWindow : Window
     {
 
-        /*hay que declarar los private static readonly en string para los strings */
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    
+    } 
+}
+
+
+
+
+        /*
+
+    {
+
+        
 
         private static readonly string AddInstance = ConfigurationManager.AppSettings["ida:SignIn"];
 
@@ -38,10 +53,10 @@ namespace MarkAddIn
             (AddClientId, AddInstance, AddTenant);
 
 
-        /*Funcion para autenticar al servicio la app cliente necesita saber el service's app ID URI y URL*/
+     
 
         private static readonly string MarkScope =
-            ConfigurationManager.AppSettings["Mark:AccessAsUserScope"];     /*revisar la uri de MarkAPI y guardarla aqui*/
+            ConfigurationManager.AppSettings["Mark:AccessAsUserScope"];     
 
         private static readonly string Adress =
             ConfigurationManager.AppSettings["Mark:Adress"];
@@ -67,4 +82,6 @@ namespace MarkAddIn
 
     }
 }
+
+*/
 

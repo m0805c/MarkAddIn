@@ -1,4 +1,4 @@
-﻿/*clase iniciadora de */
+﻿
 
 using Mark.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +33,14 @@ namespace MarkAddIn
             var servicios = Bootstrapper.ConfigureServices();
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
-            var vista1 = servicios.GetRequiredService<FormHost>();
+
+
+
+
+
+            /*carga de UI*/
+            var FormHost = servicios.GetRequiredService<FormHost>();
+            var mainView = servicios.GetRequiredService<MainWindow>();
 
 
 
@@ -62,6 +69,8 @@ namespace MarkAddIn
                     string expiracion = resultado.ExpiresOn.ToString();
                     string cuenta = resultado.Account?.Username;
                     string scope = resultado.Scopes.FirstOrDefault();
+                    
+                    
                     string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
                     string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
 
@@ -89,13 +98,16 @@ namespace MarkAddIn
             finally
 
             {
-                if (vista1.InvokeRequired)
+                if (mainView.Dispatcher.CheckAccess())
                 {
-                    vista1.Invoke(new Action(() => vista1.Show()));
+                    
+                    mainView.Show();
+
+                    /*mainView.Invoke(new Action(() => mainView.Show()));*/
                 }
                 else
                 {
-                    vista1.Show();
+                    mainView.Dispatcher.Invoke(() => mainView.Show());
                 }
             }
         }

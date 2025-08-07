@@ -25,14 +25,7 @@ namespace MarkAddIn
 
             Show();
 
-            /*
-             {Dock = DockStyle.Fill,
-             Child = new MainWindow()
-            };
-            
-             this.Controls.Add(host);
-            this.Text = "Mark"; 
-            this.Size = new Size (800, 600);*/
+         
 
 
         }
