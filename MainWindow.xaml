@@ -1,55 +1,109 @@
 ﻿<Window x:Class="MarkAddIn.MainWindow"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MarkAddIn"
-             mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1024" Background="LightSteelBlue">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mark"
+        Width="1024"
+        Height="650"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="LightGray"
+        BorderThickness="10" BorderBrush="DarkOrange">
 
-    <Grid x:Name="GlobalGrid">
-        <StackPanel Margin="10" Background="WhiteSmoke">
-            <Grid x:Name="UpTopGrid" 
-                  Height="38" Background="LightSteelBlue">
+
+    <!-- Borde azul general de 2px -->
+    <Border BorderBrush="LightGray" BorderThickness="2" CornerRadius="4" Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="72"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="58"/>
+            </Grid.RowDefinitions>
+
+            <!-- Barra superior -->
+            <Grid x:Name="UpTopGrid" Background="DarkOrange" Grid.Row="0" Margin="-7,-7,-7,42"/>
+
+
+
+            <!-- Usuario -->
+          
+
+            
+            <Grid x:Name="MainTopGrid" Background="LightGray" Margin="-7,-4,-7,37"
+                  Width="1004"
+                  Height="77" Grid.RowSpan="2">
+
+
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="0" Margin="0,0,0,10"/>
+
+                <Label Content="Usuario"
+         
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Foreground="Black"
+                       Margin="0,0,80,15" 
+                       
+                       
+                 />
             </Grid>
 
-            <Grid x:Name="MainTopGrid"
-                  Height="72" Background="LightGray">
-                <Label Content="Usuario" 
-                         HorizontalAlignment="Right" 
-                         VerticalAlignment="Center" 
-                         FontSize="20" 
-                         Foreground="Black"
-                         Margin="0,0,20,0"/>
+            <!-- Zona central con los paneles -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Panel izquierdo -->
+                <Grid x:Name="MainLeftGrid"
+                      Width="432"
+                      Height="418"
+                      Background="White"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Grid.Column="0">
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Margin="0,-2,0,2" />
+                    <Button x:Name="AprobacionBtn"
+                            Content="Approve"
+                            Width="144"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            Margin="0,0,0,30"/>
+                </Grid>
+
+                <!-- Panel derecho -->
+                <Grid x:Name="MainRightGrid"
+                      Width="432"
+                      Height="418"
+                      Background="White"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Grid.Column="1">
+                    
+                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" />
+                    
+                    <Button x:Name="FirmaBtn"
+                            Content="Sign"
+                            Width="144"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            Margin="0,0,0,30"/>
+                </Grid>
             </Grid>
 
-            <Grid x:Name="MainLeftGrid"
-                  Width="432" Height="418" Background="LightGray" Margin="537,10,-10,10">
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" ></Border>
-                <Button x:Name="AprobacionBtn" 
-                        Content="Approve" 
-                        Width="144" Height="40" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center"
-                        Margin="10,300,10,10"
-                        BorderBrush="Gray"
-                        BorderThickness="1"/>
-            </Grid>
-            <Grid x:Name="MainRightGrid"
-            Width="432" Height="418" Background="LightGray" Margin="-537,-428,10,10">
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" ></Border>
-                <Button x:Name="FirmaBtn" 
-                        Content="Sign" 
-                        Width="144" Height="40" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center"
-                        Margin="10,300,10,10"
-                        BorderBrush="Gray"
-                        BorderThickness="1"/>
-            </Grid>
+            <!-- Pie de página -->
             <Grid x:Name="MainLowGrid"
-        Height="72" Background="LightGray" Margin="0,10,0,0">
-            </Grid>
-        </StackPanel>
-    </Grid>
+                  Background="LightGray"
+                  Grid.Row="3"
+                  Margin="-7,0,-7,-7"/>
+        </Grid>
+    </Border>
 </Window>
+
