@@ -6,104 +6,101 @@
         Height="650"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Background="LightGray"
-        BorderThickness="10" BorderBrush="DarkOrange">
+        Background="White"
+        BorderThickness="10" BorderBrush="LightSteelBlue">
 
 
     <!-- Borde azul general de 2px -->
-    <Border BorderBrush="LightGray" BorderThickness="2" CornerRadius="4" Margin="5">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="38"/>
-                <RowDefinition Height="72"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="58"/>
-            </Grid.RowDefinitions>
 
-            <!-- Barra superior -->
-            <Grid x:Name="UpTopGrid" Background="DarkOrange" Grid.Row="0" Margin="-7,-7,-7,42"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38"/>
+            <RowDefinition Height="71"/>
+            <RowDefinition/>
+            <RowDefinition Height="65.04"/>
+        </Grid.RowDefinitions>
 
-
-
-            <!-- Usuario -->
-          
-
-            
-            <Grid x:Name="MainTopGrid" Background="LightGray" Margin="-7,-4,-7,37"
-                  Width="1004"
-                  Height="77" Grid.RowSpan="2">
+        <!-- Barra superior -->
+        <Grid x:Name="UpTopGrid" Background="LightSteelBlue" Grid.Row="0" Margin="-7,-7,-7,42"/>
 
 
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="0" Margin="0,0,0,10"/>
 
-                <Label Content="Usuario"
+        <!-- Usuario -->
+
+
+
+        <Grid x:Name="MainTopGrid" Background="LightGray" Margin="0,0,0,33" Grid.RowSpan="2">
+
+
+
+
+            <Label Content="Usuario"
          
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Foreground="Black"
-                       Margin="0,0,80,15" 
+                       Margin="0,0,70,0" 
                        
                        
                  />
-            </Grid>
+        </Grid>
 
-            <!-- Zona central con los paneles -->
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <!-- Zona central con los paneles -->
+        <Grid Grid.Row="1" Margin="0,45,0,27" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- Panel izquierdo -->
-                <Grid x:Name="MainLeftGrid"
+            <!-- Panel izquierdo -->
+            <Grid x:Name="MainLeftGrid"
                       Width="432"
-                      Height="418"
-                      Background="White"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Grid.Column="0">
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Margin="0,-2,0,2" />
-                    <Button x:Name="AprobacionBtn"
+                      Background="LightGray"
+                      HorizontalAlignment="Center" Margin="0,-2,0,-20">
+
+
+
+                <Button x:Name="AprobacionBtn"
                             Content="Approve"
                             Width="144"
-                            Height="40"
+                            Height="49"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Top"
                             BorderBrush="Gray"
                             BorderThickness="1"
-                            Margin="0,0,0,30"/>
-                </Grid>
+                            Margin="0,377,0,0"/>
 
-                <!-- Panel derecho -->
-                <Grid x:Name="MainRightGrid"
-                      Width="432"
-                      Height="418"
-                      Background="White"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Grid.Column="1">
-                    
-                    <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" />
-                    
-                    <Button x:Name="FirmaBtn"
-                            Content="Sign"
-                            Width="144"
-                            Height="40"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            BorderBrush="Gray"
-                            BorderThickness="1"
-                            Margin="0,0,0,30"/>
-                </Grid>
             </Grid>
 
-            <!-- Pie de página -->
-            <Grid x:Name="MainLowGrid"
-                  Background="LightGray"
-                  Grid.Row="3"
-                  Margin="-7,0,-7,-7"/>
-        </Grid>
-    </Border>
-</Window>
+            <!-- Panel derecho -->
+            <Grid x:Name="MainRightGrid"
+                      Width="432"
+                      Background="LightGray"
+                      HorizontalAlignment="Center"
+                      Grid.Column="1" Margin="0,-2,0,-20">
 
+
+
+                <Button x:Name="FirmaBtn"
+                            Content="Sign"
+                            Width="144"
+                            Height="41"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            Margin="0,386,0,0" RenderTransformOrigin="0.609,-0.224" Click="FirmaBtn_Click"/>
+            </Grid>
+        </Grid>
+
+
+        <!-- Pie de página -->
+
+        <Grid x:Name="MainLowGrid"
+              
+                  Background="LightGray"
+                  Grid.Row="3"/>
+    </Grid>
+
+</Window>
