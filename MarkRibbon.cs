@@ -78,7 +78,7 @@ namespace MarkAddIn
             {
                 if (mainView.Dispatcher.CheckAccess())
                 {
-                    
+                   
                     mainView.Show();
 
                     /*mainView.Invoke(new Action(() => mainView.Show()));*/

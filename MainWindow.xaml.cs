@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MarkAddIn;
-using Mark.Client;
+﻿using Mark.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Client;
+using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Windows;
+
+
 
 
 
@@ -25,38 +14,35 @@ namespace MarkAddIn
   
 {
 
+
+   
+
    
     /// <summary>
     /// Lógica de interacción para App.xaml
     /// </summary>
     public partial class MainWindow : Window
 
-        
-
     {
-
-      
-
         public MainWindow()
         {
-            InitializeComponent();
-
-
-            /*aqui inicializo los servicios necesarios para el MainWindow*/
             var servicios = Bootstrapper.ConfigureServices();
+            var authenticationManager = servicios.GetRequiredService<AuthenticationManager>();
+            var tokenHandler = servicios.GetRequiredService<TokenHander>();
+
+
+            InitializeComponent();
             
         }
 
-        
-        
 
-        //generado de manera automatica
+        
         private void AprobacionBtn_Click(object sender, RoutedEventArgs e) 
         {
 
         }
 
-        //generado de manera automatica
+        
         private void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
 

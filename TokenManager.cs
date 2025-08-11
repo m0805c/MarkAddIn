@@ -19,19 +19,25 @@ namespace MarkAddIn
 
         public string UserObjectId { get; set; }
 
+        public static string UserName { get; set; }
 
 
-        public void GuardarInfoToken (string AccessToken, string ObjectId)
+       
+
+
+        public void GuardarInfoToken (string AccessToken, string ObjectId, string NombreUsuario)
 
         {
             AccessToken = accessToken;
             ObjectId = UserObjectId;
+            NombreUsuario = nombre;
         }
 
         public void CleanUp ()
                     {
             accessToken = null;
             UserObjectId = null;
+            
         }
 
         public bool HasValidToken() => !string.IsNullOrEmpty(accessToken) && 

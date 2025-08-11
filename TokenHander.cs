@@ -12,11 +12,12 @@ using System.Windows.Forms;
 
 namespace MarkAddIn
 {
+
+    
+   
     public class TokenHander
+
     {
-
-
-
 
         public void Facilitador(AuthenticationResult resultado)
         {
@@ -26,36 +27,26 @@ namespace MarkAddIn
             }
 
 
-            /*guarda el token como variable accessToken*/
-
             string accessToken = resultado.AccessToken;
-
-
-            /*Heads Up: sea crea handler dandole una propiedad de System.IdentityModel.Tokens.Jwt. JwtSecurityTokenHandler*/
 
             var handler = new JwtSecurityTokenHandler();
 
-            /*se lee el token y se crea una variable jwtToken de tipo JwtSecurityToken*/
-
             var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
-            string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+            string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+
+            TokenManager.UserName = nombre;
+           
+            /*string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
             string expiracion = resultado.ExpiresOn.ToString();
             string cuenta = resultado.Account?.Username;
             string scope = resultado.Scopes.FirstOrDefault();
             string token = resultado.AccessToken;
+            string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;*/
 
 
-
-
-            string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-            string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
         }
-
-
-          
-
-
 
 
     }
