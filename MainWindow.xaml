@@ -10,7 +10,7 @@
         BorderThickness="10" BorderBrush="LightSteelBlue">
 
 
-    <!-- Borde azul general de 2px -->
+   
 
     <Grid>
         <Grid.RowDefinitions>
@@ -20,17 +20,17 @@
             <RowDefinition Height="65.04"/>
         </Grid.RowDefinitions>
 
-        <!-- Barra superior -->
+        
         <Grid x:Name="UpTopGrid" Background="LightSteelBlue" Grid.Row="0" Margin="-7,-7,-7,42"/>
 
 
 
-        <!-- Usuario -->
+      
 
 
 
         <Grid x:Name="MainTopGrid" Background="LightGray" Margin="0,0,0,33" Grid.RowSpan="2">
-
+            
 
 
 
@@ -46,18 +46,24 @@
                  />
         </Grid>
 
-        <!-- Zona central con los paneles -->
-        <Grid Grid.Row="1" Margin="0,45,0,27" Grid.RowSpan="2">
+        
+        <Grid Grid.Row="1" Margin="0,45,0,27"  Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Panel izquierdo -->
+            
             <Grid x:Name="MainLeftGrid"
+                      
                       Width="432"
                       Background="LightGray"
-                      HorizontalAlignment="Center" Margin="0,-2,0,-20">
+                      HorizontalAlignment="Center" Margin="0,-3,0,-19">
+                <Grid.Effect>
+                    <DropShadowEffect Color="LightGray" BlurRadius="10" Direction="270" ShadowDepth="6" ></DropShadowEffect>
+                </Grid.Effect>
+                
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
 
 
 
@@ -73,12 +79,18 @@
 
             </Grid>
 
-            <!-- Panel derecho -->
+
+
             <Grid x:Name="MainRightGrid"
                       Width="432"
                       Background="LightGray"
                       HorizontalAlignment="Center"
-                      Grid.Column="1" Margin="0,-2,0,-20">
+                      Grid.Column="1" Margin="0,-3,0,-19">
+                <Grid.Effect>
+                    <DropShadowEffect Color="LightGray" BlurRadius="10" Direction="270" ShadowDepth="6" ></DropShadowEffect>
+                </Grid.Effect>
+
+                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
 
 
 
@@ -95,12 +107,14 @@
         </Grid>
 
 
-        <!-- Pie de página -->
+       
 
         <Grid x:Name="MainLowGrid"
               
                   Background="LightGray"
                   Grid.Row="3"/>
+        
+
     </Grid>
 
 </Window>
