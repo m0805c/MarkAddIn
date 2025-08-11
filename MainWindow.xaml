@@ -34,7 +34,7 @@
 
 
 
-            <Label Content="Usuario"
+            <Label x:Name="UsuarioLabel" Content="Usuario"
          
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
@@ -75,7 +75,7 @@
                             VerticalAlignment="Top"
                             BorderBrush="Gray"
                             BorderThickness="1"
-                            Margin="0,377,0,0"/>
+                            Margin="0,360,0,0"/>
 
             </Grid>
 
@@ -97,12 +97,12 @@
                 <Button x:Name="FirmaBtn"
                             Content="Sign"
                             Width="144"
-                            Height="41"
+                            Height="49"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             BorderBrush="Gray"
                             BorderThickness="1"
-                            Margin="0,386,0,0" RenderTransformOrigin="0.609,-0.224" Click="FirmaBtn_Click"/>
+                            Margin="0,360,0,0" RenderTransformOrigin="0.609,-0.224" Click="FirmaBtn_Click"/>
             </Grid>
         </Grid>
 
