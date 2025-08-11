@@ -34,19 +34,9 @@ namespace MarkAddIn
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
 
-
-
-
-
             /*carga de UI*/
-            var FormHost = servicios.GetRequiredService<FormHost>();
+
             var mainView = servicios.GetRequiredService<MainWindow>();
-
-
-
-
-
-
 
             try
             {
@@ -56,27 +46,15 @@ namespace MarkAddIn
 
                 if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
                 {
-                    string accessToken = resultado.AccessToken;
-                    var handler = new JwtSecurityTokenHandler();
-
-                    var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
-
-                    /*ahora si hay que leer la info*/
-
-
-
-                    string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
-                    string expiracion = resultado.ExpiresOn.ToString();
-                    string cuenta = resultado.Account?.Username;
-                    string scope = resultado.Scopes.FirstOrDefault();
                     
-                    
+
+
+                    /*se cambió la estructura para hacer una referencia directa desde el tokenhander.cs*/
+                    var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
+
                     string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                    string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;
 
-                    MessageBox.Show($"Token expirará el: {expiracion}\nUsuario: {cuenta} \nObjectId: {objectId} \nScope:{scope} \nNombre: {nombre} \nTenant: {tenantId}");
-
-                    /*aqui podria ser que se guarden las funciones*/
+                    MessageBox.Show($"\nNombre: {nombre}");
 
                 }
 

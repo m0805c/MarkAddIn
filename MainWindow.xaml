@@ -8,10 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Background="White"
         BorderThickness="10" BorderBrush="LightSteelBlue">
-
-
-   
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="38"/>
@@ -19,7 +16,6 @@
             <RowDefinition/>
             <RowDefinition Height="65.04"/>
         </Grid.RowDefinitions>
-
         
         <Grid x:Name="UpTopGrid" Background="LightSteelBlue" Grid.Row="0" Margin="-7,-7,-7,42"/>
 
@@ -67,7 +63,9 @@
 
 
 
+                
                 <Button x:Name="AprobacionBtn"
+                       
                             Content="Approve"
                             Width="144"
                             Height="49"
@@ -75,7 +73,12 @@
                             VerticalAlignment="Top"
                             BorderBrush="Gray"
                             BorderThickness="1"
-                            Margin="0,360,0,0"/>
+                            
+                            
+                            
+                           
+                            Margin="0,360,0,0" Click="AprobacionBtn_Click"/>
+                
 
             </Grid>
 

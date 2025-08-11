@@ -13,24 +13,50 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MarkAddIn;
+using Mark.Client;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Client;
 
 
 
 namespace MarkAddIn
+
+  
 {
+
+   
     /// <summary>
     /// Lógica de interacción para App.xaml
     /// </summary>
     public partial class MainWindow : Window
+
+        
+
     {
+
+      
 
         public MainWindow()
         {
             InitializeComponent();
+
+
+            /*aqui inicializo los servicios necesarios para el MainWindow*/
+            var servicios = Bootstrapper.ConfigureServices();
+            
         }
 
+        
+        
+
+        //generado de manera automatica
+        private void AprobacionBtn_Click(object sender, RoutedEventArgs e) 
+        {
+
+        }
+
+        //generado de manera automatica
         private void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
 
