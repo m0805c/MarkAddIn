@@ -471,6 +471,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstraper.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />

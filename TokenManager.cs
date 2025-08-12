@@ -12,9 +12,14 @@ using Mark.Client;
 
 namespace MarkAddIn
 {
+
+
+    
     public class TokenManager
    
     {
+
+        
         public string accessToken { get; set; }
 
         public string UserObjectId { get; set; }
@@ -30,7 +35,10 @@ namespace MarkAddIn
         {
             AccessToken = accessToken;
             ObjectId = UserObjectId;
-            NombreUsuario = nombre;
+            NombreUsuario = UserName;
+
+
+            //NombreUsuario = nombre;
         }
 
         public void CleanUp ()

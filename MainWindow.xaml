@@ -8,29 +8,30 @@
         WindowStartupLocation="CenterScreen"
         Background="White"
         BorderThickness="10" BorderBrush="LightSteelBlue">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="38"/>
             <RowDefinition Height="71"/>
-            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
             <RowDefinition Height="65.04"/>
         </Grid.RowDefinitions>
-        
+
         <Grid x:Name="UpTopGrid" Background="LightSteelBlue" Grid.Row="0" Margin="-7,-7,-7,42"/>
 
 
 
-      
+
 
 
 
         <Grid x:Name="MainTopGrid" Background="LightGray" Margin="0,0,0,33" Grid.RowSpan="2">
-            
 
 
 
-            <Label x:Name="UsuarioLabel" Content="Usuario"
+
+            <Label x:Name="UsuarioLabel" Content="{Binding Username}"
          
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
@@ -42,14 +43,14 @@
                  />
         </Grid>
 
-        
-        <Grid Grid.Row="1" Margin="0,45,0,27"  Grid.RowSpan="2">
+
+        <Grid Grid.Row="1" Margin="0,45,0,27"  Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            
+
             <Grid x:Name="MainLeftGrid"
                       
                       Width="432"
@@ -58,12 +59,12 @@
                 <Grid.Effect>
                     <DropShadowEffect Color="LightGray" BlurRadius="10" Direction="270" ShadowDepth="6" ></DropShadowEffect>
                 </Grid.Effect>
-                
+
                 <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
 
 
 
-                
+
                 <Button x:Name="AprobacionBtn"
                        
                             Content="Approve"
@@ -78,7 +79,7 @@
                             
                            
                             Margin="0,360,0,0" Click="AprobacionBtn_Click"/>
-                
+
 
             </Grid>
 
@@ -110,13 +111,13 @@
         </Grid>
 
 
-       
+
 
         <Grid x:Name="MainLowGrid"
               
                   Background="LightGray"
-                  Grid.Row="3"/>
-        
+                  Grid.Row="4"/>
+
 
     </Grid>
 

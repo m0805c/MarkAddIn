@@ -23,6 +23,7 @@ namespace MarkAddIn
         private void MarkRibbon_Load(object sender, RibbonUIEventArgs e)
         {
 
+
         }
 
         private async void button1_Click(object sender, RibbonControlEventArgs e)
@@ -31,8 +32,12 @@ namespace MarkAddIn
             /*carga de dependencias*/
 
             var servicios = Bootstrapper.ConfigureServices();
+
+
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
+            var tokenManager =
+                servicios.GetRequiredService<TokenManager>();
 
             /*carga de UI*/
 
@@ -50,11 +55,24 @@ namespace MarkAddIn
 
 
                     /*se cambió la estructura para hacer una referencia directa desde el tokenhander.cs*/
+
                     var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
 
                     string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
 
+                    
                     MessageBox.Show($"\nNombre: {nombre}");
+
+                    TokenManager.UserName = nombre;
+
+
+
+                    mainView.ActualizarUsuario(nombre);
+
+
+
+
+
 
                 }
 
@@ -78,6 +96,8 @@ namespace MarkAddIn
             {
                 if (mainView.Dispatcher.CheckAccess())
                 {
+
+
                    
                     mainView.Show();
 

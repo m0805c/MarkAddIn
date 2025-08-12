@@ -33,10 +33,12 @@ namespace MarkAddIn
 
             var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
-            string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
 
 
-            TokenManager.UserName = nombre;
+
+            var nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+            
+            
            
             /*string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
             string expiracion = resultado.ExpiresOn.ToString();

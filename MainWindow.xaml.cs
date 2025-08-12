@@ -11,45 +11,70 @@ using System.Windows;
 
 namespace MarkAddIn
 
-  
 {
 
-
-   
-
-   
     /// <summary>
     /// Lógica de interacción para App.xaml
     /// </summary>
     public partial class MainWindow : Window
 
     {
+
+        private readonly MainWindowViewModel _viewModel;
+
         public MainWindow()
         {
-            var servicios = Bootstrapper.ConfigureServices();
-            var authenticationManager = servicios.GetRequiredService<AuthenticationManager>();
-            var tokenHandler = servicios.GetRequiredService<TokenHander>();
-
-
             InitializeComponent();
-            
+            _viewModel = new MainWindowViewModel();
+            this.DataContext = _viewModel;
+        }
+
+        public void ActualizarUsuario(string nombre)
+        {
+            _viewModel.Username = nombre ?? "Usuario";
         }
 
 
-        
-        private void AprobacionBtn_Click(object sender, RoutedEventArgs e) 
+        private void AprobacionBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        
+
         private void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
-    } 
+    }
 }
 
+
+
+        /*
+            InitializeComponent();
+
+          
+
+         
+            
+
+            MessageBox.Show($"prueba: '{TokenManager.UserName ?? "NULL"}'");
+
+
+         
+
+        }
+
+        public void ActualizarUsuario (string nombre)
+        {
+                       UsuarioLabel.Content = nombre;
+        }
+
+
+       
+    } 
+}
+*/
 
 
 
