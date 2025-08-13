@@ -31,3 +31,4 @@ namespace MarkAddIn
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+ 

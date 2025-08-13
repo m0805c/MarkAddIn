@@ -24,7 +24,8 @@ namespace MarkAddIn
 
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();  
+
             _viewModel = new MainWindowViewModel();
             this.DataContext = _viewModel;
         }
@@ -46,7 +47,28 @@ namespace MarkAddIn
 
         }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

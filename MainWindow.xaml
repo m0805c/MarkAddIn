@@ -35,7 +35,8 @@
          
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"
-                       FontSize="20"
+                       FontSize="26"
+                       FontWeight="DemiBold"
                        Foreground="Black"
                        Margin="0,0,70,0" 
                        
@@ -62,18 +63,40 @@
 
                 <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
 
+                <TextBlock x:Name="FirmaTextBlock"
+                               Text="Firmar un Documento"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               Margin="0,40,0,0"/>
 
+
+                <TextBlock x:Name="DescripcionFirmaTextBlock"
+                               Text="Dibuja tu Firma"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               FontSize="24"
+                               FontWeight="DemiBold"
+                               Foreground="Black"
+                               Margin="0,100,0,0"/>
 
 
                 <Button x:Name="AprobacionBtn"
                        
-                            Content="Approve"
+                            Content="Aprobar"
                             Width="144"
                             Height="49"
+                            FontSize="16"
+                            FontWeight="DemiBold"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             BorderBrush="Gray"
-                            BorderThickness="1"
+                            Background="White"
+                            RenderTransformOrigin="0.609,-0.224"
+                            BorderThickness="2"
+                
                             
                             
                             
@@ -96,16 +119,43 @@
 
                 <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
 
+                
+                
+                
+                <TextBlock x:Name="AprobacionTextBlock"
+                               Text="Aprueba un Documento"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               Margin="0,40,0,0"/>
+
+
+                <TextBlock x:Name="DescripcionAprobacionTextBlock"
+                    Text="Inserta tu firma &#x0a; previamente capturada" 
+                    
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    TextAlignment="Center"
+                    FontSize="24"
+                    FontWeight="DemiBold"
+                    Foreground="Black"
+                    Margin="0,90,0,0"/>
+
 
 
                 <Button x:Name="FirmaBtn"
-                            Content="Sign"
+                            Content="Firmar"
                             Width="144"
                             Height="49"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
+                            FontSize="16"
+                            FontWeight="DemiBold"
                             BorderBrush="Gray"
-                            BorderThickness="1"
+                            BorderThickness="2"
+                            Background="White"
                             Margin="0,360,0,0" RenderTransformOrigin="0.609,-0.224" Click="FirmaBtn_Click"/>
             </Grid>
         </Grid>
