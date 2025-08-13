@@ -4,6 +4,10 @@ using Microsoft.Identity.Client;
 using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Windows;
+using System.Windows.Controls;
+using System.Configuration;
+using System.Windows.Navigation;
+using System;
 
 
 
@@ -24,11 +28,13 @@ namespace MarkAddIn
 
         public MainWindow()
         {
-            InitializeComponent();  
+            InitializeComponent();
 
             _viewModel = new MainWindowViewModel();
             this.DataContext = _viewModel;
         }
+
+      
 
         public void ActualizarUsuario(string nombre)
         {
@@ -36,13 +42,13 @@ namespace MarkAddIn
         }
 
 
-        private void AprobacionBtn_Click(object sender, RoutedEventArgs e)
+        public void AprobacionBtn_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
+        
 
-
-        private void FirmaBtn_Click(object sender, RoutedEventArgs e)
+        public void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

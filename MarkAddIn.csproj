@@ -380,6 +380,7 @@
       <HintPath>packages\System.Threading.Tasks.Extensions.4.6.3\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -464,9 +465,10 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="ControlMuestra.xaml.cs">
-      <DependentUpon>ControlMuestra.xaml</DependentUpon>
+    <Compile Include="DrawSignatureView.xaml.cs">
+      <DependentUpon>DrawSignatureView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawSignatureViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -504,6 +506,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
     <None Include="MarkAddIn_TemporaryKey.pfx" />
@@ -531,7 +534,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ControlMuestra.xaml">
+    <Page Include="DrawSignatureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -539,6 +542,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\draw.png" />
+    <None Include="Resources\approve.png" />
+    <Resource Include="img\approve.png" />
+    <Resource Include="img\draw.png" />
+    <Resource Include="img\Logo_Areya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo_Areya.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

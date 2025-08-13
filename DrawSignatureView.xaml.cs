@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MarkAddIn
 {
     /// <summary>
-    /// Lógica de interacción para ControlMuestra.xaml
+    /// Lógica de interacción para DrawSignatureView.xaml
     /// </summary>
-    public partial class ControlMuestra : UserControl
+    public partial class DrawSignatureView : UserControl
     {
-        public ControlMuestra()
+        public DrawSignatureView()
         {
             InitializeComponent();
         }
