@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarkAddIn
 {
-    internal class DrawSignatureViewModel
+    public class DrawSignatureViewModel
     {
     }
 }

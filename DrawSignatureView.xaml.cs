@@ -18,6 +18,9 @@ namespace MarkAddIn
     /// <summary>
     /// Lógica de interacción para DrawSignatureView.xaml
     /// </summary>
+    /// 
+
+
     public partial class DrawSignatureView : UserControl
     {
         public DrawSignatureView()
