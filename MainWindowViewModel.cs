@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-/*clase view model para poder */
+
 namespace MarkAddIn
 {
     public class MainWindowViewModel : INotifyPropertyChanged 

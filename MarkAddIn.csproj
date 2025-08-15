@@ -465,8 +465,8 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="DrawSignatureView.xaml.cs">
-      <DependentUpon>DrawSignatureView.xaml</DependentUpon>
+    <Compile Include="DrawSignature.xaml.cs">
+      <DependentUpon>DrawSignature.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrawSignatureViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -474,10 +474,6 @@
     </Compile>
     <Compile Include="Bootstraper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="SavePromptView.xaml.cs">
-      <DependentUpon>SavePromptView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SavePromptViewModel.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />
@@ -538,15 +534,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DrawSignatureView.xaml">
+    <Page Include="DrawSignature.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SavePromptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

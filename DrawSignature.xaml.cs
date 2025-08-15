@@ -16,16 +16,18 @@ using System.Windows.Shapes;
 namespace MarkAddIn
 {
     /// <summary>
-    /// Lógica de interacción para DrawSignatureView.xaml
+    /// Lógica de interacción para DrawSignature.xaml
     /// </summary>
-    /// 
+    public partial class DrawSignature : Window
 
-
-    public partial class DrawSignatureView : UserControl
     {
-        public DrawSignatureView()
+        public DrawSignature()
         {
             InitializeComponent();
+
         }
+
+
+
     }
 }

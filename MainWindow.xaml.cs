@@ -20,37 +20,44 @@ namespace MarkAddIn
     /// <summary>
     /// Lógica de interacción para App.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    /// 
 
+
+    //Calls Up desde el XAML: MarkAddin.MainWindow
+    public partial class MainWindow : Window
     {
 
         private readonly MainWindowViewModel _viewModel;
-
         public MainWindow()
         {
             InitializeComponent();
-
             _viewModel = new MainWindowViewModel();
             this.DataContext = _viewModel;
+
         }
-
-      
-
-        public void ActualizarUsuario(string nombre)
-        {
-            _viewModel.Username = nombre ?? "Usuario";
-        }
-
-
-        public void AprobacionBtn_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-        
 
         public void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
 
+
+            System.Windows.Navigation.NavigationService navigationService = System.Windows.Navigation.NavigationService.GetNavigationService(this);
+            if (navigationService != null)
+            {
+                navigationService.Navigate(new DrawSignature());
+            }
+            else
+            {
+                MessageBox.Show("NavigationService no está disponible.");
+            }
+        }
+
+
+        
+
+
+        public void ActualizarUsuario(string nombre)
+        {
+            _viewModel.Username = nombre ?? "Usuario";
         }
     }
 

@@ -32,16 +32,14 @@ namespace MarkAddIn
             /*carga de dependencias*/
 
             var servicios = Bootstrapper.ConfigureServices();
-
-
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
-            var tokenManager =
-                servicios.GetRequiredService<TokenManager>();
+            var tokenManager = servicios.GetRequiredService<TokenManager>();
+            
 
-            /*carga de UI*/
-
+   
             var mainView = servicios.GetRequiredService<MainWindow>();
+            var DrawSignature = servicios.GetRequiredService<DrawSignature>();
 
             try
             {
@@ -49,12 +47,12 @@ namespace MarkAddIn
                 var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
 
-                if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
+                if (resultado != null)          
                 {
                     
 
 
-                    /*se cambió la estructura para hacer una referencia directa desde el tokenhander.cs*/
+            
 
                     var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
 
@@ -69,6 +67,8 @@ namespace MarkAddIn
 
                     mainView.ActualizarUsuario(nombre);
 
+
+             
 
 
 

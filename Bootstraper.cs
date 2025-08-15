@@ -26,6 +26,7 @@ namespace Mark.Client
             servicios.AddSingleton<FormHost>();
             servicios.AddSingleton<MarkRibbon>();
             servicios.AddTransient<MainWindow>();
+            servicios.AddTransient<DrawSignature>();
 
 
             return servicios.BuildServiceProvider();
