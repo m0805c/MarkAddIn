@@ -22,8 +22,7 @@ namespace MarkAddIn
         
         public string accessToken { get; set; }
 
-        public string UserObjectId { get; set; }
-
+        public string UserObjectId { get; set;}
         public static string UserName { get; set; }
 
 
@@ -50,6 +49,8 @@ namespace MarkAddIn
 
         public bool HasValidToken() => !string.IsNullOrEmpty(accessToken) && 
             !string.IsNullOrEmpty(UserObjectId);
+
+        
     }
 
 }

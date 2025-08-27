@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="MarkAddIn.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Background="White"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+    <!-- Grid principal ocupa todo -->
+    <Grid Margin="10"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Panel izquierdo -->
+        <Grid Background="LightGray" Margin="10" Grid.Column="0"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título -->
+            <TextBlock Text="hola"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,20,0,10"/>
+
+            <!-- Imagen + Descripción -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\draw.png"
+                       Stretch="Uniform"
+                       MaxWidth="250"
+                       Margin="0,0,0,10"/>
+                <TextBlock Text="Dibuja tu Firma"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Botón -->
+            <Button Content="Aprobar"
+                    Width="144"
+                    Height="49"
+                    FontSize="16"
+                    FontWeight="DemiBold"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,20"
+                    Grid.Row="2"
+                    Click="AprobacionBtn_Click"/>
+        </Grid>
+
+        <!-- Panel derecho -->
+        <Grid Background="LightGray" Margin="10" Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título -->
+            <TextBlock Text="dnvso"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,20,0,10"/>
+
+            <!-- Imagen + Descripción -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\approve.png"
+                       Stretch="Uniform"
+                       MaxWidth="220"
+                       Margin="0,0,0,10"/>
+                <TextBlock Text="Inserta tu firma previamente capturada"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Botón -->
+            <Button Content="Firmar"
+                    Width="144"
+                    Height="51"
+                    FontSize="16"
+                    FontWeight="DemiBold"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0,20"
+                    Grid.Row="2"
+                    Click="FirmaBtn_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -24,6 +24,7 @@ namespace MarkAddIn
         {
 
 
+
         }
 
         private async void button1_Click(object sender, RibbonControlEventArgs e)
@@ -32,14 +33,16 @@ namespace MarkAddIn
             /*carga de dependencias*/
 
             var servicios = Bootstrapper.ConfigureServices();
+
+
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
             var tokenHandler = servicios.GetRequiredService<TokenHander>();
-            var tokenManager = servicios.GetRequiredService<TokenManager>();
-            
+            var tokenManager =
+                servicios.GetRequiredService<TokenManager>();
 
-   
+            /*carga de UI*/
+
             var mainView = servicios.GetRequiredService<MainWindow>();
-            var DrawSignature = servicios.GetRequiredService<DrawSignature>();
 
             try
             {
@@ -47,31 +50,25 @@ namespace MarkAddIn
                 var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
 
-                if (resultado != null)          
+                if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
                 {
-                    
 
 
-            
+
+                    /*se cambió la estructura para hacer una referencia directa desde el tokenhander.cs*/
+
+
+                    /*esto no es necesario replicarlo, ya que las unico contenido que va a cambiar es el contenido central*/
+
 
                     var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
-
                     string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-
-                    
                     MessageBox.Show($"\nNombre: {nombre}");
-
                     TokenManager.UserName = nombre;
 
 
 
                     mainView.ActualizarUsuario(nombre);
-
-
-             
-
-
-
 
 
                 }
@@ -98,7 +95,7 @@ namespace MarkAddIn
                 {
 
 
-                   
+
                     mainView.Show();
 
                     /*mainView.Invoke(new Action(() => mainView.Show()));*/

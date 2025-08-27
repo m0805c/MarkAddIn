@@ -1,194 +1,79 @@
 ﻿<Window x:Class="MarkAddIn.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:markaddin="clr-namespace:MarkAddIn"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Mark"
-    Width="1024"
-    Height="650"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    Background="White"
-    BorderThickness="10" BorderBrush="LightSteelBlue">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:markaddin="clr-namespace:MarkAddIn"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DataContext="{d:DesignInstance Type=markaddin:MainWindowViewModel}"
+        Title="Mark"
+        Width="1024"
+        Height="650"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="White"
+        BorderThickness="10"
+        BorderBrush="LightSteelBlue"
+        mc:Ignorable="d">
+
+    <!-- Mapea VM -> View -->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type markaddin:HomeViewViewModel}">
+            <markaddin:HomeView/>
+        </DataTemplate>
+    </Window.Resources>
 
     <Grid>
+        <!-- Define zonas: 0 barra superior fina, 1 header, 2-3 centro, 4 footer -->
         <Grid.RowDefinitions>
             <RowDefinition Height="38"/>
+            <!-- barra superior -->
             <RowDefinition Height="71"/>
+            <!-- header -->
             <RowDefinition Height="3*"/>
+            <!-- centro arriba -->
             <RowDefinition Height="7*"/>
-            <RowDefinition Height="65.04"/>
+            <!-- centro abajo -->
+            <RowDefinition Height="65"/>
+            <!-- footer -->
         </Grid.RowDefinitions>
 
-        <Grid x:Name="UpTopGrid" Background="LightSteelBlue" Grid.Row="0" Margin="-7,-7,-7,42"/>
+        <!-- Barra superior -->
+        <Grid x:Name="UpTopGrid"
+              Background="LightSteelBlue"
+              Grid.Row="0"/>
 
-
-
-
-
-
-
-        <Grid x:Name="MainTopGrid" Background="LightGray" Margin="0,0,0,33" Grid.RowSpan="2">
+        <!-- Header (SOLO en fila 1, sin RowSpan ni márgenes raros) -->
+        <Grid x:Name="MainTopGrid"
+              Background="LightGray"
+              Grid.Row="1">
             <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\Logo_Areya.png"
-                  Width="180"
+                   Width="180"
                    HorizontalAlignment="Left"
-                   Margin="20,0,0,0"></Image>
-
-
-
-            <Label x:Name="UsuarioLabel" Content="{Binding Username}"
-         
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       FontSize="26"
-                       FontWeight="DemiBold"
-                       Foreground="Black"
-                       Margin="0,0,70,0" 
-                       
-                       
-                 />
+                   Margin="20,0,0,0"/>
+            <Label x:Name="UsuarioLabel"
+                   Content="{Binding Username}"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="26"
+                   FontWeight="DemiBold"
+                   Foreground="Black"
+                   Margin="0,0,70,0"/>
         </Grid>
 
+        <!-- Área central dinámica (fila 2 y 3) -->
+        <ContentControl Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Content="{Binding CurrentView}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="0"/>
 
-        <Grid Grid.Row="1" Margin="0,45,0,27"  Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-
-
-            <Grid x:Name="MainLeftGrid" 
-                      Width="432"
-                      Background="LightGray"
-                      HorizontalAlignment="Center" Margin="0,-3,0,-19">
-
-                <Grid.Effect>
-                    <DropShadowEffect Color="LightGray" BlurRadius="10" Direction="270" ShadowDepth="6" ></DropShadowEffect>
-                </Grid.Effect>
-
-
-                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\draw.png"
-                 Width="266"
-                 Margin="0,35,0,0"></Image>
-
-
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2" Margin="0,1,0,-1"/>
-
-                <TextBlock x:Name="FirmaTextBlock"
-                               Text="Firmar un Documento"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               FontSize="26"
-                               FontWeight="Bold"
-                               Foreground="Black"
-                               Margin="0,30,0,0"/>
-
-
-                <TextBlock x:Name="DescripcionFirmaTextBlock"
-                               Text="Dibuja tu Firma"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               FontSize="24"
-                               FontWeight="DemiBold"
-                               Foreground="Black"
-                               Margin="0,95,0,0"/>
-
-
-                <Button x:Name="AprobacionBtn"
-                       
-                            Content="Aprobar"
-                            Width="144"
-                            Height="49"
-                            FontSize="16"
-                            FontWeight="DemiBold"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            BorderBrush="Gray"
-                            Background="White"
-                            RenderTransformOrigin="0.609,-0.224"
-                            BorderThickness="2"
-                
-                            
-                            
-                            
-                           
-                            Margin="0,360,0,0" Click="AprobacionBtn_Click"/>
-
-
-            </Grid>
-
-
-
-            <Grid x:Name="MainRightGrid"
-                      Width="432"
-                      Background="LightGray"
-                      HorizontalAlignment="Center"
-                      Grid.Column="1" Margin="0,-3,0,-19">
-                <Grid.Effect>
-                    <DropShadowEffect Color="LightGray" BlurRadius="10" Direction="270" ShadowDepth="6" ></DropShadowEffect>
-                </Grid.Effect>
-
-
-
-                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\approve.png" 
-                       Width="216"
-                       Margin="0,30,0,0" ></Image>
-
-
-                <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="2"/>
-
-
-
-
-                <TextBlock x:Name="AprobacionTextBlock"
-                               Text="Aprueba un Documento"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               FontSize="26"
-                               FontWeight="Bold"
-                               Foreground="Black"
-                               Margin="0,30,0,0"/>
-
-
-                <TextBlock x:Name="DescripcionAprobacionTextBlock"
-                    Text="Inserta tu firma &#x0a; previamente capturada" 
-                    
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    TextAlignment="Center"
-                    FontSize="24"
-                    FontWeight="DemiBold"
-                    Foreground="Black"
-                    Margin="0,70,0,0"/>
-
-
-
-                <Button x:Name="FirmaBtn"
-                            Content="Firmar"
-                            Width="144"
-                            Height="49"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            FontSize="16"
-                            FontWeight="DemiBold"
-                            BorderBrush="Gray"
-                            BorderThickness="2"
-                            Background="White"
-                            Margin="0,360,0,0" RenderTransformOrigin="0.609,-0.224" Click="FirmaBtn_Click"/>
-            </Grid>
-        </Grid>
-
-
-
-
+        <!-- Footer -->
         <Grid x:Name="MainLowGrid"
-              
-                  Background="LightGray"
-                  Grid.Row="4"/>
-
-
+              Background="LightGray"
+              Grid.Row="4"/>
     </Grid>
-
 </Window>
+
+
+    

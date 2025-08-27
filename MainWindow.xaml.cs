@@ -23,7 +23,8 @@ namespace MarkAddIn
     /// 
 
 
-    //Calls Up desde el XAML: MarkAddin.MainWindow
+    //Calls Up desde el XAML: Mark
+
     public partial class MainWindow : Window
     {
 
@@ -31,34 +32,21 @@ namespace MarkAddIn
         public MainWindow()
         {
             InitializeComponent();
+           
+
+            
             _viewModel = new MainWindowViewModel();
             this.DataContext = _viewModel;
-
+          
         }
 
-        public void FirmaBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            System.Windows.Navigation.NavigationService navigationService = System.Windows.Navigation.NavigationService.GetNavigationService(this);
-            if (navigationService != null)
-            {
-                navigationService.Navigate(new DrawSignature());
-            }
-            else
-            {
-                MessageBox.Show("NavigationService no está disponible.");
-            }
-        }
-
-
-        
-
-
-        public void ActualizarUsuario(string nombre)
+        public void ActualizarUsuario(string nombre)            
+            
+            /*tiene que haber uno como este dentro del HomeView.xaml*/
         {
             _viewModel.Username = nombre ?? "Usuario";
         }
+
     }
 
 }

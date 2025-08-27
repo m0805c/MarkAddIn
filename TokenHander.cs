@@ -9,16 +9,14 @@ using Microsoft.Identity.Client;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MarkAddIn
 {
 
-    
-   
     public class TokenHander
 
     {
-
         public void Facilitador(AuthenticationResult resultado)
         {
             if (resultado == null)
@@ -33,27 +31,9 @@ namespace MarkAddIn
 
             var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
-
-
-
             var nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-            
-            
-           
-            /*string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
-            string expiracion = resultado.ExpiresOn.ToString();
-            string cuenta = resultado.Account?.Username;
-            string scope = resultado.Scopes.FirstOrDefault();
-            string token = resultado.AccessToken;
-            string tenantId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "tid")?.Value;*/
+               
 
-
+            }
         }
-
-
     }
-
-
-
-}
-

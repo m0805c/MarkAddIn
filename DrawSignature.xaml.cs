@@ -18,16 +18,9 @@ namespace MarkAddIn
     /// <summary>
     /// Lógica de interacción para DrawSignature.xaml
     /// </summary>
-    public partial class DrawSignature : Window
+    
 
-    {
-        public DrawSignature()
-        {
-            InitializeComponent();
+        
 
-        }
-
-
-
-    }
 }
+
