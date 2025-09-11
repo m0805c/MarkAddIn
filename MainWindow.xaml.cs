@@ -17,32 +17,23 @@ namespace MarkAddIn
 
 {
 
-    /// <summary>
-    /// Lógica de interacción para App.xaml
-    /// </summary>
-    /// 
 
-
-    //Calls Up desde el XAML: Mark
 
     public partial class MainWindow : Window
     {
-
+    
         private readonly MainWindowViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
-           
-
             
             _viewModel = new MainWindowViewModel();
             this.DataContext = _viewModel;
-          
+            
         }
 
         public void ActualizarUsuario(string nombre)            
-            
-            /*tiene que haber uno como este dentro del HomeView.xaml*/
+
         {
             _viewModel.Username = nombre ?? "Usuario";
         }

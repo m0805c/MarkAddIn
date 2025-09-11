@@ -25,7 +25,7 @@
     <Grid>
         <!-- Define zonas: 0 barra superior fina, 1 header, 2-3 centro, 4 footer -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="38"/>
+            <RowDefinition Height="10"/>
             <!-- barra superior -->
             <RowDefinition Height="71"/>
             <!-- header -->
@@ -58,9 +58,10 @@
                    FontWeight="DemiBold"
                    Foreground="Black"
                    Margin="0,0,70,0"/>
-        </Grid>
-
-        <!-- Área central dinámica (fila 2 y 3) -->
+        </Grid>   
+        
+        <!--ContentControl -->
+        
         <ContentControl Grid.Row="2"
                         Grid.RowSpan="2"
                         Content="{Binding CurrentView}"

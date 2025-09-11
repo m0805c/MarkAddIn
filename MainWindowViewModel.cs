@@ -14,7 +14,8 @@ namespace MarkAddIn
 
 
 
-        /*metodo para el usuario*/
+
+
         private string _username = "Usuario";
         public string Username
         {
@@ -36,28 +37,29 @@ namespace MarkAddIn
 
 
 
+       
 
 
 
-
-        private UserControl _currentView;
-        public UserControl CurrentView
-        {
-            get => _currentView;
-            set
-            {
-                if (value != _currentView)
-                {
-                    _currentView = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
+        /*aqui se le asigna valor a current view por primera vez*/
         public MainWindowViewModel()
         {
             CurrentView = new HomeView();
         }
+
+        private UserControl _currentView;
+        public UserControl CurrentView
+        {
+            get => _currentView;                                /*se quito la condicional y se dejó la asignacion del homeview por defecto*/
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

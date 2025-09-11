@@ -26,19 +26,42 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>MarkAddIn</RootNamespace>
     <AssemblyName>MarkAddIn</AssemblyName>
-    <LoadBehavior>3</LoadBehavior>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <DefineConstants>VSTO40;UseOfficeInterop</DefineConstants>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
     <ResolveComReferenceSilent>true</ResolveComReferenceSilent>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <PublishUrl>publish\</PublishUrl>
+    <InstallUrl />
+    <TargetCulture>es</TargetCulture>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>days</UpdateIntervalUnits>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <ProductName>MarkAddIn</ProductName>
+    <PublisherName />
+    <SupportUrl />
+    <FriendlyName>MarkAddIn</FriendlyName>
+    <OfficeApplicationDescription />
+    <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
+      <ProductName>Runtime de Microsoft Visual Studio 2010 Tools para Office %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
@@ -484,6 +507,7 @@
     </Compile>
     <Compile Include="Bootstraper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />
@@ -569,7 +593,10 @@
     <Resource Include="img\Logo_Areya.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Logo_Areya.png" />
+    <EmbeddedResource Include="Resources\Logo_Areya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\left-arrow.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

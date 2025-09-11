@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
 
             <!-- Título -->
-            <TextBlock Text="hola"
+            <TextBlock Text="Firmar Documento"
                        FontSize="26"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
@@ -42,14 +42,15 @@
                        Stretch="Uniform"
                        MaxWidth="250"
                        Margin="0,0,0,10"/>
-                <TextBlock Text="Dibuja tu Firma"
+                <TextBlock Text="Dibuja tu Firma &#x0a; en el Documento"
                            FontSize="20"
                            FontWeight="DemiBold"
+                           TextAlignment="Center"
                            HorizontalAlignment="Center"/>
             </StackPanel>
 
             <!-- Botón -->
-            <Button Content="Aprobar"
+            <Button Content="Firmar"
                     Width="144"
                     Height="49"
                     FontSize="16"
@@ -57,7 +58,7 @@
                     HorizontalAlignment="Center"
                     Margin="0,10,0,20"
                     Grid.Row="2"
-                    Click="AprobacionBtn_Click"/>
+                    Click="FirmaBtn_Click"/>
         </Grid>
 
         <!-- Panel derecho -->
@@ -72,7 +73,7 @@
             </Grid.RowDefinitions>
 
             <!-- Título -->
-            <TextBlock Text="dnvso"
+            <TextBlock Text="Aprobar Documento"
                        FontSize="26"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
@@ -84,7 +85,7 @@
                        Stretch="Uniform"
                        MaxWidth="220"
                        Margin="0,0,0,10"/>
-                <TextBlock Text="Inserta tu firma previamente capturada"
+                <TextBlock Text="Inserta tu firma&#x0a; previamente capturada"
                            FontSize="20"
                            FontWeight="DemiBold"
                            TextAlignment="Center"
@@ -92,7 +93,7 @@
             </StackPanel>
 
             <!-- Botón -->
-            <Button Content="Firmar"
+            <Button Content="Aprobar"
                     Width="144"
                     Height="51"
                     FontSize="16"
@@ -100,7 +101,7 @@
                     HorizontalAlignment="Center"
                     Margin="0,10,0,20"
                     Grid.Row="2"
-                    Click="FirmaBtn_Click"/>
+                    Click="AprobacionBtn_Click"/>
         </Grid>
     </Grid>
 </UserControl>

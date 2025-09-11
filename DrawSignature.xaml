@@ -1,18 +1,84 @@
-﻿<Window x:Class="MarkAddIn.DrawSignature"
+﻿<UserControl x:Class="MarkAddIn.DrawSignature"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:markaddin="clr-namespace:MarkAddIn"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Mark"
     Width="1024"
     Height="650"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
     Background="White"
-    BorderThickness="10" BorderBrush="LightSteelBlue">
-    <Grid>
-        <InkCanvas/>
+             HorizontalAlignment="Center">
+
+    <!--Grid Princial que contiene al resto de los elementos-->
+
+    <Grid Width="954" Height="405" VerticalAlignment="Top" 
+           Background="LightGray" Margin="0,20,0,0">
+
+
+        
+        <!--este es el area a trabajar-->
+        
+        <Grid Width="800" Height="245" VerticalAlignment="Top" Margin="0,30,0,0">
+            <Border BorderBrush="Gray" BorderThickness="3" CornerRadius="2">
+                <InkCanvas Background="White"/>
+            </Border>
+        </Grid>
+
+
+
+
+
+
+        
+            <Button     
+                Width="50" 
+                Height="50"
+                FontSize="16"
+                FontWeight="DemiBold" 
+                HorizontalAlignment="Left" 
+                Margin="13,140,0,0" 
+                VerticalAlignment="Top"
+                Click="BackToHomeBtn_Click" Background="LightGray" BorderBrush="LightGray">
+            <Image Source="C:\Users\andres.chavez\source\repos\m0805c\MarkAddIn\Resources\left-arrow.png" Width="44" OpacityMask="Black"></Image>
+           
+        </Button>
+            
+  
+
+
+
+
+
+
+        <Button Content="Limpiar"        
+                Width="155" 
+                Height="49" 
+                FontSize="16" 
+                FontWeight="DemiBold" 
+                HorizontalAlignment="Left" 
+                Margin="200,320,0,0" 
+                VerticalAlignment="Top"
+                Click="EraseFirmaBtn_Click" />
+
+
+
+
+        <Button Content="Aceptar" 
+                Width="156" 
+                Height="49" 
+                FontSize="16" 
+                FontWeight="DemiBold" 
+                HorizontalAlignment="Left" 
+                Margin="644,320,0,0" 
+                VerticalAlignment="Top"
+                Click="AcceptFirmaBtn_Click"/>
+
+
+
+
+
     </Grid>
-</Window>
+
+
+</UserControl>

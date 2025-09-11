@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MarkAddIn
 {
@@ -26,8 +28,28 @@ namespace MarkAddIn
 
                 }
             }
-
         }
+
+
+
+        private object _currentDrawSignatureViewModel;
+
+        public object CurrentDrawSignatureViewModel
+        {
+            get => _currentDrawSignatureViewModel;
+            set
+            {
+                if (_currentDrawSignatureViewModel != value)
+                {
+                    OnPropertyChanged(nameof(CurrentDrawSignatureViewModel));
+                }
+            }
+        }
+
+
+
+        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

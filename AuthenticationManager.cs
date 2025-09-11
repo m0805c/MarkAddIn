@@ -66,7 +66,7 @@ namespace Mark.Client
         }
 
 
-        //prueba con bool false al 04/08
+        //prueba con bool false al 09/08
 
         
         public async Task<AuthenticationResult> AcquireTokenAsync(bool forceLogin = false)
@@ -78,8 +78,7 @@ namespace Mark.Client
             if (!forceLogin && cuentas.Any())
             {
                 try
-                {
-                    ultimaAutenticacion = await _mark
+                {                    ultimaAutenticacion = await _mark
                         .AcquireTokenSilent(_scopes, cuentas.First())
                         .ExecuteAsync()
                         .ConfigureAwait(false);
