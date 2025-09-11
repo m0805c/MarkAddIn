@@ -38,11 +38,22 @@ namespace MarkAddIn
 
 
 
-
+        
 
         private void BackToHomeBtn_Click(object sender, RoutedEventArgs e)
         {
-               
+           var relyWindow = Application.Current.Windows
+                .OfType<MainWindow>().FirstOrDefault();
+
+            if (relyWindow != null)
+            {
+                if (relyWindow.DataContext is MainWindowViewModel mainWindowViewModel)
+                {
+                  var homeView = new HomeView();
+
+                    mainWindowViewModel.CurrentView = homeView;
+                }
+            }
         }
 
 
