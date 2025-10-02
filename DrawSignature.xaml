@@ -22,7 +22,7 @@
         <Grid Width="800" Height="245" VerticalAlignment="Top" Margin="0,30,0,0">
             <Border BorderBrush="Gray" BorderThickness="3" CornerRadius="2">
               
-                <InkCanvas x:Name="Board" Background="White"/>
+                <InkCanvas x:Name="Board" Background="White" ClipToBounds="False"/>
             
             </Border>
         </Grid>
