@@ -50,7 +50,8 @@ namespace MarkAddIn
         private UserControl _currentView;
         public UserControl CurrentView
         {
-            get => _currentView;                                /*se quito la condicional y se dejó la asignacion del homeview por defecto*/
+            get => _currentView;                                /*se quito la condicional y se dejó la asignacion del 
+                                                                 * homeview por defecto*/
             set
             {
                 _currentView = value;

@@ -22,24 +22,24 @@ namespace Mark.Client
             servicios.AddSingleton<TokenManager>();
             servicios.AddSingleton<TokenHander>();
 
-            /*servicios de vista o! 🔹 
-             * 
-             * 
-             * 
-             * Entonces el siguiente paso lógico es crear los UserControls DrawSignatureView y ApprovalView (antes llamados DrawSignature.xaml y tu layout de aprobación), y sus ViewModels correspondientes.*/
-
+            /*servicios de vistas*/
+            
             servicios.AddSingleton<FormHost>();
             servicios.AddSingleton<MarkRibbon>();
             servicios.AddTransient<MainWindow>();
             servicios.AddTransient<DrawSignature>();
+            servicios.AddTransient<SavePrompt>();
 
-
-            /*ViewModels*/
+            /*servicios de ViewModels*/
             servicios.AddSingleton<MainWindowViewModel>();
-            //servicios.AddTransient<DrawSignaturViewModel>();
-            //ApprovalViewModel
+            servicios.AddTransient<HomeViewViewModel>();
+            servicios.AddTransient<DrawSignatureViewModel>();
+            servicios.AddTransient<SavePromptViewModel>();
+ 
+
 
             servicios.AddSingleton<INavigationService, MarkAddIn.NavigationService>();
+            ;
 
             return servicios.BuildServiceProvider();
 

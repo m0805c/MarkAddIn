@@ -48,8 +48,6 @@ namespace MarkAddIn
 
 
 
-        
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

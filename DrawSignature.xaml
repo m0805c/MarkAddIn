@@ -21,7 +21,9 @@
         
         <Grid Width="800" Height="245" VerticalAlignment="Top" Margin="0,30,0,0">
             <Border BorderBrush="Gray" BorderThickness="3" CornerRadius="2">
-                <InkCanvas Background="White"/>
+              
+                <InkCanvas x:Name="Board" Background="White"/>
+            
             </Border>
         </Grid>
 
@@ -51,7 +53,7 @@
 
 
 
-        <Button Content="Limpiar"        
+        <Button x:Name="BtnLimpiar" Content="Limpiar"        
                 Width="155" 
                 Height="49" 
                 FontSize="16" 
