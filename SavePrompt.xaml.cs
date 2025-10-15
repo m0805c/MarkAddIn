@@ -14,7 +14,7 @@ namespace MarkAddIn
         public SavePrompt()
         {
             InitializeComponent();
-            
+
             MostrarPrevisualizacion();
         }
 
@@ -31,25 +31,45 @@ namespace MarkAddIn
 
                 /*ajustar la imagen sin recortar con el uniform*/
                 PreviewImage.Source = bitmap;
-                PreviewImage.Stretch = System.Windows.Media.Stretch.Uniform; 
+                PreviewImage.Stretch = System.Windows.Media.Stretch.Uniform;
                 PreviewImage.HorizontalAlignment = HorizontalAlignment.Center;
                 PreviewImage.VerticalAlignment = VerticalAlignment.Center;
 
-                
-                double maxWidth = 400;  
-                double maxHeight = 200; 
+
+                double maxWidth = 400;
+                double maxHeight = 200;
                 PreviewImage.MaxWidth = maxWidth;
                 PreviewImage.MaxHeight = maxHeight;
             }
         }
 
+
+
+
         private void NoGuardarBtn_Click(object sender, RoutedEventArgs e)
         {
-            var relyWindow = Application.Current.Windows.OfType<MainWindow>
-                ().FirstOrDefault();
-            if (relyWindow != null)
+            try
             {
-                relyWindow.Close();
+                /*inserta la firma*/
+                SignatureInserter.InsertarFirmaFlotante(
+                    DrawSignature.FirmaTemporal.Bytes,
+                    left: 100f,
+                    top: 150f,
+                    width: 250f,
+                    height: 100f
+                );
+
+                MessageBox.Show("Firma insertada bien.",
+                                "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+               
+                var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow?.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar la firma en Excel: " + ex.Message,
+                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -61,13 +81,15 @@ namespace MarkAddIn
 
         private void GuardarBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+
+
+
+
+
         }
-
-
-
     }
 }
+
 
 
 

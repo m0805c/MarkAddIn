@@ -513,6 +513,7 @@
       <DependentUpon>SavePrompt.xaml</DependentUpon>
     </Compile>
     <Compile Include="SavePromptViewModel.cs" />
+    <Compile Include="SignatureInserter.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />
