@@ -48,15 +48,12 @@ namespace MarkAddIn
 
         private void NoGuardarBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+          
+            
                 /*inserta la firma*/
                 SignatureInserter.InsertarFirmaFlotante(
-                    DrawSignature.FirmaTemporal.Bytes,
-                    left: 100f,
-                    top: 150f,
-                    width: 250f,
-                    height: 100f
+                    DrawSignature.FirmaTemporal.Bytes
+              
                 );
 
                 MessageBox.Show("Firma insertada bien.",
@@ -65,12 +62,8 @@ namespace MarkAddIn
                
                 var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 mainWindow?.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al insertar la firma en Excel: " + ex.Message,
-                                "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        
+          
         }
 
 
