@@ -4,12 +4,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
 using Microsoft.Identity.Client;
 using System.Windows.Documents;
+using System.Windows.Media.Animation;
 
 namespace MarkAddIn
 {
     public static class SignatureInserter
     {
-
+        /*clase para insetar la firma*/
         public static void InsertarFirmaFlotante(byte[] firmaBytes)
         {
             if (firmaBytes == null || firmaBytes.Length == 0)
@@ -21,60 +22,88 @@ namespace MarkAddIn
             var app = Globals.ThisAddIn.Application;
             Excel.Worksheet hojaActiva = (Excel.Worksheet)app.ActiveSheet;
 
-                    hojaActiva.Unprotect();
+            hojaActiva.Unprotect();
 
-            Excel.Range rangoPrincipal = hojaActiva.Range["B2", "D4"];
-            Excel.Range rangoAlternativo = hojaActiva.Range["E2", "G4"];
-
-            // Verificar si ya hay una imagen en el rango principal
-            bool rangoOcupado = false;
-            float leftPrincipal = (float)(double)rangoPrincipal.Left;
-            float topPrincipal = (float)(double)rangoPrincipal.Top;
-            float rightPrincipal = leftPrincipal + (float)(double)rangoPrincipal.Width;
-            float bottomPrincipal = topPrincipal + (float)(double)rangoPrincipal.Height;
-
-            foreach (Excel.Shape shape in hojaActiva.Shapes)
+         
+            Excel.Range[] rangos = new Excel.Range[]
             {
-                float shapeLeft = shape.Left;
-                float shapeTop = shape.Top;
-                float shapeRight = shapeLeft + shape.Width;
-                float shapeBottom = shapeTop + shape.Height;
+                hojaActiva.Range["C48", "D50"], 
+                hojaActiva.Range["C56", "D58"], 
+                hojaActiva.Range["H48", "I50"],
+                hojaActiva.Range["H56", "I58"]  
+            };
 
-                // Verifica si la imagen está dentro del rango principal
-                if (shapeLeft >= leftPrincipal && shapeRight <= rightPrincipal &&
-                    shapeTop >= topPrincipal && shapeBottom <= bottomPrincipal)
+            Excel.Range rangoSeleccionado = null;
+
+            // Buscar el primer rango disponible
+            foreach (var rango in rangos)
+            {
+                float left = (float)(double)rango.Left;
+                float top = (float)(double)rango.Top;
+                float right = left + (float)(double)rango.Width;
+                float bottom = top + (float)(double)rango.Height;
+
+                bool ocupado = false;
+                foreach (Excel.Shape shape in hojaActiva.Shapes)
                 {
-                    rangoOcupado = true;
+                    float shapeLeft = shape.Left;
+                    float shapeTop = shape.Top;
+                    float shapeRight = shapeLeft + shape.Width;
+                    float shapeBottom = shapeTop + shape.Height;
+
+                    if (shapeLeft >= left && shapeRight <= right &&
+                        shapeTop >= top && shapeBottom <= bottom)
+                    {
+                        ocupado = true;
+                        break;
+                    }
+                }
+
+                if (!ocupado)
+                {
+                    rangoSeleccionado = rango;
                     break;
                 }
             }
 
-            Excel.Range rangoDestino = rangoOcupado ? rangoAlternativo : rangoPrincipal;
+            // Si todos los rangos están ocupados, usar el último
+            if (rangoSeleccionado == null)
+                rangoSeleccionado = rangos[rangos.Length - 1];
 
-            float left = (float)(double)rangoDestino.Left;
-            float top = (float)(double)rangoDestino.Top;
-            float width = (float)(double)rangoDestino.Width;
-            float height = (float)(double)rangoDestino.Height;
+            float impresionLeft = (float)(double)rangoSeleccionado.Left;
+            float impresionTop = (float)(double)rangoSeleccionado.Top;
+            float impresionWidth = (float)(double)rangoSeleccionado.Width;
+            float impresionHeight = (float)(double)rangoSeleccionado.Height;
 
             var FirmaMarcaDeAgua = hojaActiva.Shapes.AddPicture(
                 Filename: tempPath,
                 LinkToFile: MsoTriState.msoFalse,
                 SaveWithDocument: MsoTriState.msoTrue,
-                Left: left,
-                Top: top,
-                Width: width,
-                Height: height
+                Left: impresionLeft,
+                Top: impresionTop,
+                Width: impresionWidth,
+                Height: impresionHeight
             );
 
             FirmaMarcaDeAgua.LockAspectRatio = MsoTriState.msoTrue;
             FirmaMarcaDeAgua.Placement = Excel.XlPlacement.xlFreeFloating;
 
+
+
             hojaActiva.Protect(Contents: true, DrawingObjects: true);
 
             File.Delete(tempPath);
+
+
+  
+                
+            
+            
         }
 
+
         
+
        
     }
 }
