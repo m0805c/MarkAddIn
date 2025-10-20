@@ -19,12 +19,14 @@ namespace MarkAddIn
             string tempPath = Path.Combine(Path.GetTempPath(), $"firma_{Guid.NewGuid()}.png");
             File.WriteAllBytes(tempPath, firmaBytes);
 
+
+            /*encuentra la aplicacion*/
             var app = Globals.ThisAddIn.Application;
             Excel.Worksheet hojaActiva = (Excel.Worksheet)app.ActiveSheet;
 
             hojaActiva.Unprotect();
 
-         
+            /*determina los rangos*/
             Excel.Range[] rangos = new Excel.Range[]
             {
                 hojaActiva.Range["C48", "D50"], 
@@ -35,7 +37,7 @@ namespace MarkAddIn
 
             Excel.Range rangoSeleccionado = null;
 
-            // Buscar el primer rango disponible
+            /*busca el primer rango disponible*/
             foreach (var rango in rangos)
             {
                 float left = (float)(double)rango.Left;
@@ -66,7 +68,8 @@ namespace MarkAddIn
                 }
             }
 
-            // Si todos los rangos están ocupados, usar el último
+            /*si todos los rangos estan utilizados, usar el ultimo*/
+            /* if <= 1,, rango seleccionado =  rango[longitud actual - 1]*/
             if (rangoSeleccionado == null)
                 rangoSeleccionado = rangos[rangos.Length - 1];
 
@@ -75,6 +78,8 @@ namespace MarkAddIn
             float impresionWidth = (float)(double)rangoSeleccionado.Width;
             float impresionHeight = (float)(double)rangoSeleccionado.Height;
 
+
+            /*definición de la impresión*/
             var FirmaMarcaDeAgua = hojaActiva.Shapes.AddPicture(
                 Filename: tempPath,
                 LinkToFile: MsoTriState.msoFalse,
@@ -89,7 +94,7 @@ namespace MarkAddIn
             FirmaMarcaDeAgua.Placement = Excel.XlPlacement.xlFreeFloating;
 
 
-
+            /*bloque de protección*/
             hojaActiva.Protect(Contents: true, DrawingObjects: true);
 
             File.Delete(tempPath);
