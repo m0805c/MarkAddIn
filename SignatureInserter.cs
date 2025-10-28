@@ -5,10 +5,12 @@ using Microsoft.Office.Core;
 using Microsoft.Identity.Client;
 using System.Windows.Documents;
 using System.Windows.Media.Animation;
+using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace MarkAddIn
 {
-    public static class SignatureInserter
+    public class SignatureInserter
     {
         /*clase para insetar la firma*/
         public static void InsertarFirmaFlotante(byte[] firmaBytes)
@@ -20,11 +22,43 @@ namespace MarkAddIn
             File.WriteAllBytes(tempPath, firmaBytes);
 
 
-            /*encuentra la aplicacion*/
+           
             var app = Globals.ThisAddIn.Application;
             Excel.Worksheet hojaActiva = (Excel.Worksheet)app.ActiveSheet;
 
-            hojaActiva.Unprotect();
+            var appWorkbook = Globals.ThisAddIn.Application;
+            Excel.Workbook libroActivo = appWorkbook.ActiveWorkbook;
+            hojaActiva.Unprotect(Password: "P5w0soA314641z");
+         
+
+
+            
+           static void EliminarConfigRangosParaCeldas()
+
+
+                
+            {
+                var appRanges = Globals.ThisAddIn.Application;
+                Excel.Worksheet rangosHojaActiva = (Excel.Worksheet)appRanges.ActiveSheet;
+
+                Excel.AllowEditRanges rangosEdicion = rangosHojaActiva.Protection.AllowEditRanges;
+
+                try
+                {
+                   
+                    for (int i = rangosEdicion.Count; i >= 1; i--)
+                    {
+                        Excel.AllowEditRange rango = rangosEdicion[i];
+                        rango.Delete();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al eliminar rangos de edición: " + ex.Message);
+                }
+            }
+
+
 
             /*determina los rangos*/
             Excel.Range[] rangos = new Excel.Range[]
@@ -95,7 +129,8 @@ namespace MarkAddIn
 
 
             /*bloque de protección*/
-            hojaActiva.Protect(Contents: true, DrawingObjects: true);
+            hojaActiva.Protect(Contents: true, DrawingObjects: true, Password:"P5w0soA314641z");
+            libroActivo.Protect(Password:"P5w0soA314641z", Structure: true);
 
             File.Delete(tempPath);
 

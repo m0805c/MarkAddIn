@@ -48,27 +48,19 @@ namespace MarkAddIn
 
         private void NoGuardarBtn_Click(object sender, RoutedEventArgs e)
         {
-          
-            
-                /*inserta la firma*/
-                SignatureInserter.InsertarFirmaFlotante(
-                    DrawSignature.FirmaTemporal.Bytes
-              
-                );
 
-                MessageBox.Show("Firma insertada bien.",
-                                "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            SignatureInserter.InsertarFirmaFlotante(
+                DrawSignature.FirmaTemporal.Bytes
 
-               
-                var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-                mainWindow?.Close();
-        
-          
+
+            );
+
+            MessageBox.Show("Firma insertada bien.",
+                            "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+            mainWindow?.Close();
         }
-
-
-
-
 
 
 
@@ -77,11 +69,56 @@ namespace MarkAddIn
 
 
 
-
-
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

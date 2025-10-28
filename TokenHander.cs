@@ -17,11 +17,15 @@ namespace MarkAddIn
     public class TokenHander
 
     {
+
+        public string Nombre { get; private set; }
+
+
         public void Facilitador(AuthenticationResult resultado)
         {
             if (resultado == null)
             {
-                throw new InvalidOperationException("No se obtuvo un token.");
+                throw new InvalidOperationException("No se obtuvo un token."); 
             }
 
 
@@ -31,7 +35,10 @@ namespace MarkAddIn
 
             var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
-            var nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+            /*este es el objeto que maneja el nombre*/
+
+             Nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
                
 
             }

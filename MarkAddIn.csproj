@@ -501,6 +501,7 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeViewViewModel.cs" />
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="INavigationService.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -514,6 +515,7 @@
     </Compile>
     <Compile Include="SavePromptViewModel.cs" />
     <Compile Include="SignatureInserter.cs" />
+    <Compile Include="SignatureManagement.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />
@@ -548,6 +550,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
     <None Include="MarkAddIn_TemporaryKey.pfx" />
     <None Include="packages.config" />

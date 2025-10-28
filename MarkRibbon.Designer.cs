@@ -56,7 +56,7 @@
             // 
             // button1
             // 
-            this.button1.Label = "button1";
+            this.button1.Label = "Mark";
             this.button1.Name = "button1";
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
