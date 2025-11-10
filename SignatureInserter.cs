@@ -15,14 +15,20 @@ namespace MarkAddIn
         /*clase para insetar la firma*/
         public static void InsertarFirmaFlotante(byte[] firmaBytes)
         {
+
+
+            /*define la firma*/
+
+
             if (firmaBytes == null || firmaBytes.Length == 0)
                 throw new ArgumentException("La firma está vacía o no se generó correctamente.");
+            /*define el string path pero dentro del metodo*/
 
             string tempPath = Path.Combine(Path.GetTempPath(), $"firma_{Guid.NewGuid()}.png");
             File.WriteAllBytes(tempPath, firmaBytes);
 
 
-           
+           /*define la aplicacion*/
             var app = Globals.ThisAddIn.Application;
             Excel.Worksheet hojaActiva = (Excel.Worksheet)app.ActiveSheet;
 

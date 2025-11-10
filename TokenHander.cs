@@ -18,29 +18,29 @@ namespace MarkAddIn
 
     {
 
-        public string Nombre { get; private set; }
+        public string Nombre { get; set; }
+     
+        public static JwtSecurityTokenHandler handler { get; set; }
+        public static JwtSecurityToken jwtToken { get; set; }
+
 
 
         public void Facilitador(AuthenticationResult resultado)
         {
             if (resultado == null)
             {
-                throw new InvalidOperationException("No se obtuvo un token."); 
+                throw new InvalidOperationException("No se obtuvo un token.");
             }
-
 
             string accessToken = resultado.AccessToken;
 
-            var handler = new JwtSecurityTokenHandler();
+     
+            handler = new JwtSecurityTokenHandler();
 
-            var jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
+        
+            jwtToken = handler.ReadToken(accessToken) as JwtSecurityToken;
 
-
-            /*este es el objeto que maneja el nombre*/
-
-             Nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-               
-
-            }
+            Nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+        }
         }
     }

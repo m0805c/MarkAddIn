@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
+using Microsoft.Identity.Client;
 
 namespace MarkAddIn
 {
@@ -49,14 +50,9 @@ namespace MarkAddIn
         private void NoGuardarBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            SignatureInserter.InsertarFirmaFlotante(
-                DrawSignature.FirmaTemporal.Bytes
+            SignatureOverture.NombreAutenticado = TokenManager.UserName;
 
-
-            );
-
-            MessageBox.Show("Firma insertada bien.",
-                            "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            SignatureOverture.ActivarInserccionPorClic(DrawSignature.FirmaTemporal.Bytes);
 
             var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             mainWindow?.Close();
@@ -66,12 +62,105 @@ namespace MarkAddIn
 
         private void GuardarBtn_Click(object sender, RoutedEventArgs e)
         {
+                
+            /*referencias de la clase que habilita el metodo para guardar la firma o remplazarla*/
 
 
 
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

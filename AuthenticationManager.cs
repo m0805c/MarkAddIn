@@ -1,6 +1,4 @@
-﻿
-
-using MarkAddIn;
+﻿using MarkAddIn;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Cache;
 using Microsoft.Identity.Client.Extensions.Msal;
@@ -125,13 +123,24 @@ namespace Mark.Client
                 await _mark.RemoveAsync(acc);
         }
 
-
-
         
-
     }
       
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

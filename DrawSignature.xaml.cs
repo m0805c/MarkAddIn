@@ -122,7 +122,38 @@ namespace MarkAddIn
                 MessageBox.Show("Firma capturada y convertida a PNG correctamente.",
                                 "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
+
+
+
+                MessageBox.Show($"Bytes capturados: {string.Join(", ", firmaEnBytes)}",
+                "Bytes de la firma", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+
+
+
+                // Convertir los bytes a una cadena Base64
+                string firmaBase64 = Convert.ToBase64String(firmaEnBytes);
+
+
+
+
+                // Copiar al portapapeles
+                Clipboard.SetText(firmaBase64);
+
                 
+
+
+                MessageBox.Show(
+                    "✓ Base64 copiado al portapapeles\n\n" +
+                    $"Longitud: {firmaBase64.Length} caracteres\n\n" +
+                    "Pégalo directamente en Swagger/Postman",
+                    "Firma en Base64",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+
+
                 Board.Strokes.Clear();
 
                
