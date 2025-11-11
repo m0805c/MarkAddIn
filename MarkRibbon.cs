@@ -11,6 +11,12 @@ namespace MarkAddIn
 {
     public partial class MarkRibbon
     {
+        public static AuthenticationResult resultado;
+        public static JwtSecurityToken jwtToken;
+        public static string nombre; 
+        public static string email;
+        public static string objectId;
+
         private void MarkRibbon_Load(object sender, RibbonUIEventArgs e)
         {
             // Inicialización del Ribbon
@@ -29,7 +35,7 @@ namespace MarkAddIn
             try
             {
               
-                var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
+                 resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
                 if (resultado == null)
                 {
@@ -38,11 +44,11 @@ namespace MarkAddIn
                 }
 
                 
-                var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
+                 jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
 
-                string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                string email = jwtToken?.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value;
-                string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+                 nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                 email = jwtToken?.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value;
+                 objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
 
                 if (string.IsNullOrEmpty(objectId))
                 {
@@ -50,10 +56,11 @@ namespace MarkAddIn
                     return;
                 }
 
+
                 
                 TokenManager.UserName = nombre;
-                tokenManager.accessToken = resultado.AccessToken;
-                tokenManager.UserObjectId = objectId;
+                TokenManager.accessToken = resultado.AccessToken;
+                TokenManager.UserObjectId = objectId;
 
                
                 var nuevoUsuario = new UsuarioPostDTO

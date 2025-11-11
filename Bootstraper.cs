@@ -2,53 +2,47 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Excel;
 using System;
-using System.Windows.Forms.Design;
-using System.Windows.Navigation;
 
-
-//Mark.Client espacio de nombres: clase de donde se van a referenciar los servicios de la aplicación
 namespace Mark.Client
 {
-    public partial class Bootstrapper  
-        
-        //correción: es necesario que la clase sea parcial para que se puedan referenciar los distintos servicios con los que se cuenta           
+    public static class Bootstrapper
     {
-        public static IServiceProvider ConfigureServices()     /*Provedor de servicios*/ 
+        private static IServiceProvider _serviceProvider;
+
+        public static IServiceProvider ConfigureServices()
         {
-            var servicios = new ServiceCollection();         
+            if (_serviceProvider != null)
+                return _serviceProvider;
+
+            var servicios = new ServiceCollection();
 
             // Servicios principales
             servicios.AddSingleton<AuthenticationManager>();
             servicios.AddSingleton<TokenManager>();
-            servicios.AddSingleton<TokenHander>(); 
-            servicios.AddSingleton<ApiService>();/*servicio registrado*/
+            servicios.AddSingleton<TokenHander>();
+            servicios.AddSingleton<ApiService>(); // servicio registrado
 
-            /*servicios de vistas*/
-
+            // Servicios de vistas
             servicios.AddSingleton<FormHost>();
             servicios.AddSingleton<MarkRibbon>();
             servicios.AddTransient<MainWindow>();
             servicios.AddTransient<DrawSignature>();
             servicios.AddTransient<SavePrompt>();
-            servicios.AddTransient<SignatureInserter>(); /*clase que inserta la firma*/
+            servicios.AddTransient<SignatureInserter>(); // clase que inserta la firma
 
-
-          /*servicios de ViewModels*/
+            // ViewModels
             servicios.AddSingleton<MainWindowViewModel>();
             servicios.AddTransient<HomeViewViewModel>();
             servicios.AddTransient<DrawSignatureViewModel>();
             servicios.AddTransient<SavePromptViewModel>();
-            
- 
 
-
+            // Servicios de navegación
             servicios.AddSingleton<INavigationService, MarkAddIn.NavigationService>();
-            ;
 
-            return servicios.BuildServiceProvider();
-
-            
+            _serviceProvider = servicios.BuildServiceProvider();
+            return _serviceProvider;
         }
+
+        public static IServiceProvider ServiceProvider => _serviceProvider ?? ConfigureServices();
     }
 }
-

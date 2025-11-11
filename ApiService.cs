@@ -2,14 +2,21 @@
 using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 
 /*revisar las url de cada llamada*/
 /*los gets no necesitan manejar DTOs de entrega*/
+
+
+
+/*controladores de usuario ya funcionan, ya solo hay que revisar los de firmas*/
 
 namespace Mark.Client
 {
@@ -30,7 +37,7 @@ namespace Mark.Client
         {
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", _tokenManager.accessToken);
+                new AuthenticationHeaderValue("Bearer", TokenManager.accessToken);
         }
 
 
@@ -114,7 +121,7 @@ namespace Mark.Client
 
             AgregarEncabezados();
 
-            var url = $"{_baseUrl}/Firmas/?ObjectIdAzure={objectIdAzure}";
+            var url = $"{_baseUrl}/Firmas/{objectIdAzure}";
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
@@ -125,9 +132,21 @@ namespace Mark.Client
 
             var contenido = await response.Content.ReadAsStringAsync();
 
-            var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);
+             contenido = await response.Content.ReadAsStringAsync();
 
+
+            /*Clipboard.SetText(contenido);
+            MessageBox.Show(contenido);*/
+
+            /*aqui es el error*/
+            /*var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);*/
+
+            var firmas = JsonConvert.DeserializeObject<List<FirmaRetornadaDTO>>(contenido);
+            var firmaRetornada = firmas?.FirstOrDefault();
             return firmaRetornada;
+
+
+            
         }
     
       

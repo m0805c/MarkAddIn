@@ -1,6 +1,9 @@
-﻿using Microsoft.Identity.Client;
+﻿using Mark.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
@@ -27,6 +30,13 @@ namespace MarkAddIn
     {
 
         private readonly HomeViewViewModel _HomeViewviewModel;
+        public static AuthenticationResult resultado;
+        public static JwtSecurityToken jwtToken;
+        public static string nombre;
+        public static string email;
+        public static string objectId;
+
+
         public HomeView()
         {
             InitializeComponent();
@@ -71,15 +81,41 @@ namespace MarkAddIn
 
 
 
-        
-      
 
 
 
-        
-        private void AprobacionBtn_Click(object sender, RoutedEventArgs e)
+
+
+
+        public async void AprobacionBtn_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var servicios = Bootstrapper.ServiceProvider; 
 
+                var apiService = servicios.GetRequiredService<ApiService>();
+
+                TokenManager.UserObjectId = objectId;
+
+                var firma = await apiService.ObtenerFirmaAsync(objectId);
+
+
+              MessageBox.Show(firma.ImgBase64);
+
+                if (firma == null)
+                {
+                    MessageBox.Show("No se encontró una firma registrada para este usuario.",
+                                    "Sin firma", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                MessageBox.Show("Firma obtenida correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado: {ex.Message}");
+            }
         }
+
     }
 }

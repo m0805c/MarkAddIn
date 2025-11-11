@@ -20,9 +20,9 @@ namespace MarkAddIn
     {
 
         
-        public string accessToken { get; set; }
+        public static string accessToken { get; set; }
 
-        public string UserObjectId { get; set;}
+        public static string UserObjectId { get; set;}
         public static string UserName { get; set; }
 
 
