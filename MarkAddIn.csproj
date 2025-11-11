@@ -493,6 +493,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="ApiService.cs" />
     <Compile Include="DrawSignature.xaml.cs">
       <DependentUpon>DrawSignature.xaml</DependentUpon>
     </Compile>
@@ -500,6 +501,9 @@
     <Compile Include="example.xaml.cs">
       <DependentUpon>example.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FirmaPostDTO.cs" />
+    <Compile Include="FirmaPutDTO.cs" />
+    <Compile Include="FirmaRetornadaDTO.cs" />
     <Compile Include="HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -539,6 +543,8 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UsuarioPostDTO.cs" />
+    <Compile Include="UsuarioRetornadoDTO.cs" />
     <EmbeddedResource Include="FormHost.resx">
       <DependentUpon>FormHost.cs</DependentUpon>
     </EmbeddedResource>

@@ -21,9 +21,10 @@ namespace Mark.Client
             servicios.AddSingleton<AuthenticationManager>();
             servicios.AddSingleton<TokenManager>();
             servicios.AddSingleton<TokenHander>(); 
+            servicios.AddSingleton<ApiService>();/*servicio registrado*/
 
             /*servicios de vistas*/
-            
+
             servicios.AddSingleton<FormHost>();
             servicios.AddSingleton<MarkRibbon>();
             servicios.AddTransient<MainWindow>();

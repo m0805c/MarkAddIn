@@ -1,19 +1,10 @@
-﻿
-
-using Mark.Client;
+﻿using Mark.Client;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
-using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Ribbon;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MarkAddIn
@@ -22,92 +13,111 @@ namespace MarkAddIn
     {
         private void MarkRibbon_Load(object sender, RibbonUIEventArgs e)
         {
-
-
-
+            // Inicialización del Ribbon
         }
 
         private async void button1_Click(object sender, RibbonControlEventArgs e)
         {
-
-            /*carga de dependencias*/
-
+            // Carga de dependencias
             var servicios = Bootstrapper.ConfigureServices();
 
-
             var authManager = servicios.GetRequiredService<AuthenticationManager>();
-            var tokenHandler = servicios.GetRequiredService<TokenHander>();
-            var tokenManager =
-                servicios.GetRequiredService<TokenManager>();
-
-            /*carga de UI*/
-
+            var tokenManager = servicios.GetRequiredService<TokenManager>();
+            var apiService = servicios.GetRequiredService<ApiService>();
             var mainView = servicios.GetRequiredService<MainWindow>();
 
             try
             {
-
+              
                 var resultado = await authManager.AcquireTokenAsync(forceLogin: true);
 
-
-                if (resultado != null)          /*si pasa el proceso de autenticación, se extrae info*/
+                if (resultado == null)
                 {
-
-
-
-                    /*se cambió la estructura para hacer una referencia directa desde el tokenhander.cs*/
-
-
-                    /*esto no es necesario replicarlo, ya que las unico contenido que va a cambiar es el contenido central*/
-
-
-                    var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
-                    string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-                    MessageBox.Show($"\nNombre: {nombre}");
-                    TokenManager.UserName = nombre;
-
-
-
-                    mainView.ActualizarUsuario(nombre);
-
-
+                    MessageBox.Show("Error: no se pudo obtener el token de acceso.");
+                    return;
                 }
 
-                else
+                
+                var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(resultado.AccessToken);
 
+                string nombre = jwtToken?.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+                string email = jwtToken?.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value;
+                string objectId = jwtToken?.Claims.FirstOrDefault(c => c.Type == "oid")?.Value;
+
+                if (string.IsNullOrEmpty(objectId))
                 {
-                    MessageBox.Show("primer catchup.");
+                    MessageBox.Show("Error: no se pudo obtener el ObjectId del usuario.");
+                    return;
                 }
 
+                
+                TokenManager.UserName = nombre;
+                tokenManager.accessToken = resultado.AccessToken;
+                tokenManager.UserObjectId = objectId;
 
-            }
+               
+                var nuevoUsuario = new UsuarioPostDTO
+                {
+                    Nombre = nombre,
+                    Email = email,
+                    ObjectIdAzure = objectId
+                };
 
-            catch (Exception error)
+               
+                try
+                {
+                    var usuarioExistente = await apiService.ObtenerUsuarioAsync(objectId);
 
-            {
-                MessageBox.Show($"aqui es el error: {error.Message}");
-            }
+                    if (usuarioExistente != null)
+                    {
+                        MessageBox.Show($"Bienvenido, {nombre}.");
+                    }
+                    else
+                    {
+                      
+                        await apiService.CrearUsuarioAsync(objectId, nuevoUsuario);
+                        MessageBox.Show($"El usuario de {nombre} creado correctamente.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                   
+                    if (ex.Message.Contains("404"))
+                    {
+                        try
+                        {
+                            await apiService.CrearUsuarioAsync(objectId, nuevoUsuario);
+                            MessageBox.Show($"Usuario {nombre} no existía y fue creado correctamente.");
+                        }
+                        catch (Exception createEx)
+                        {
+                            MessageBox.Show($"Error al crear usuario: {createEx.Message}");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error al verificar usuario: {ex.Message}");
+                        return;
+                    }
+                }
 
-            finally
+                
+                mainView.ActualizarUsuario(nombre);
 
-            {
                 if (mainView.Dispatcher.CheckAccess())
-                {
-
-
-
                     mainView.Show();
-
-                    /*mainView.Invoke(new Action(() => mainView.Show()));*/
-                }
                 else
-                {
                     mainView.Dispatcher.Invoke(() => mainView.Show());
-                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show($"Error general durante el inicio de sesión: {error.Message}");
             }
         }
     }
 }
+
 
 
 

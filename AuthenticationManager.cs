@@ -17,6 +17,8 @@ using Mark;
 
 
 
+/*es aqui donde debe dispararse la solicitud para crear o obtener el usuario*/
+
 namespace Mark.Client
 {
 
