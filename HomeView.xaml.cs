@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
@@ -17,7 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MarkAddIn
 {
@@ -32,9 +33,13 @@ namespace MarkAddIn
         private readonly HomeViewViewModel _HomeViewviewModel;
         public static AuthenticationResult resultado;
         public static JwtSecurityToken jwtToken;
-        public static string nombre;
+        public static string nombre;            /*hay que darle valor dentro del metodo de aprobar*/
         public static string email;
         public static string objectId;
+        private static string firmaRetornadaBytes;
+        public static byte[] firmaBytes;
+
+
 
 
         public HomeView()
@@ -89,18 +94,50 @@ namespace MarkAddIn
 
         public async void AprobacionBtn_Click(object sender, RoutedEventArgs e)
         {
+
+           
             try
             {
                 var servicios = Bootstrapper.ServiceProvider; 
 
                 var apiService = servicios.GetRequiredService<ApiService>();
 
+
                 TokenManager.UserObjectId = objectId;
+
+              
 
                 var firma = await apiService.ObtenerFirmaAsync(objectId);
 
 
-              MessageBox.Show(firma.ImgBase64);
+                /*MessageBox.Show(firma.ImgBase64);*/
+
+                var firmaRetornada = firma.ImgBase64;   /*empezar a trabajar con firmaRetornada*/
+
+               /*cambiamos a [] */
+
+                var firmaRetornadaBytes = Convert.FromBase64String(firmaRetornada);
+
+
+
+                string tempPath = Path.Combine(Path.GetTempPath(), $"firma_{Guid.NewGuid()}.png");
+                File.WriteAllBytes(tempPath, firmaRetornadaBytes);
+
+
+                firmaBytes = firmaRetornadaBytes;
+
+                SignatureOverture.NombreAutenticado = TokenManager.UserName;
+
+                
+
+                /*nos quedamos aqu*/
+                SignatureOverture.ActivarInserccionPorClic(firmaBytes);
+
+
+                var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow?.Close();
+
+
 
                 if (firma == null)
                 {
@@ -115,6 +152,8 @@ namespace MarkAddIn
             {
                 MessageBox.Show($"Error inesperado: {ex.Message}");
             }
+
+            /*no service for type MarkAddin.SignaturOverture has been registered*/
         }
 
     }

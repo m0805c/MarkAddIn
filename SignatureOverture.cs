@@ -15,6 +15,8 @@ namespace MarkAddIn
         public static string tempPathName;
         public static string tempPath;
 
+
+
         public static Excel.Application app = Globals.ThisAddIn.Application;
 
         public static void ActivarInserccionPorClic(byte[] firmaBytes)
@@ -25,19 +27,19 @@ namespace MarkAddIn
             if (firmaBytes == null || firmaBytes.Length == 0)
                 throw new ArgumentException("Firma vacía.");
 
-            // Guardar firma temporal
+          
             tempPath = Path.Combine(Path.GetTempPath(), $"firma_{Guid.NewGuid()}.png");
             File.WriteAllBytes(tempPath, firmaBytes);
 
-            // Guardar nombre temporal como imagen
+    
             tempPathName = Path.Combine(Path.GetTempPath(), $"Nombre_{Guid.NewGuid()}.png");
             RenderTextToPng(tempPathName);
 
-            // Desbloquea la hoja
+            
             var hojaActiva = (Excel.Worksheet)app.ActiveSheet;
             hojaActiva.Unprotect("P5w0soA314641z");
 
-            // Enganchar evento
+            
             app.SheetBeforeDoubleClick += OnSheetBeforeDoubleClick;
             MessageBox.Show("Doble clic donde deseas insertar la firma.");
         }
@@ -52,10 +54,10 @@ namespace MarkAddIn
             using Font font = new("Segoe UI", 16);
             using Brush brush = new SolidBrush(Color.Black);
 
-            // Medir el tamaño del texto
+            
             SizeF textSize = graphics.MeasureString(NombreAutenticado, font);
 
-            // Calcular posición centrada
+           
             float x = (width - textSize.Width) / 2;
             float y = (height - textSize.Height) / 2;
 
