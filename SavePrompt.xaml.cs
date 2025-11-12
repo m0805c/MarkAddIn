@@ -7,11 +7,26 @@ using System.Windows.Media.Imaging;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
 using Microsoft.Identity.Client;
+using Mark.Client;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+using System.IdentityModel.Selectors;
 
 namespace MarkAddIn
 {
+
+
+
     public partial class SavePrompt : UserControl
     {
+
+
+        /*crear instancias para referenciar el oid*/
+
+      
+
+
+
         public SavePrompt()
         {
             InitializeComponent();
@@ -60,13 +75,38 @@ namespace MarkAddIn
 
 
 
-        private void GuardarBtn_Click(object sender, RoutedEventArgs e)
+        public async void GuardarBtn_Click(object sender, RoutedEventArgs e)
         {
-                
-            /*referencias de la clase que habilita el metodo para guardar la firma o remplazarla*/
+            try
+            {
+                var servicios = Bootstrapper.ServiceProvider;
+                var apiService = servicios.GetRequiredService<ApiService>();
+
+               
+
+                var NuevaFirma = new FirmaPostDTO
+                {
+                    ImgBase64 = Convert.ToBase64String(DrawSignature.FirmaTemporal.Bytes),
+                   ObjectIdAzure = TokenManager.UserObjectId,
+                };
+
+                 /*buscar usuario por object id con un obtener usuario async, manejar el DTO para determinar si tiene una firma*/
 
 
+                   
+               await apiService.CrearFirmaAsync(NuevaFirma);
 
+                 
+
+                SignatureOverture.NombreAutenticado = TokenManager.UserName;
+                SignatureOverture.ActivarInserccionPorClic(DrawSignature.FirmaTemporal.Bytes);
+                var mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                mainWindow?.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar la firma: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

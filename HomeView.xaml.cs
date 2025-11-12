@@ -103,11 +103,12 @@ namespace MarkAddIn
                 var apiService = servicios.GetRequiredService<ApiService>();
 
 
-                TokenManager.UserObjectId = objectId;
+                objectId = TokenManager.UserObjectId;
 
-              
 
-                var firma = await apiService.ObtenerFirmaAsync(objectId);
+
+
+                var firma = await apiService.ObtenerFirmaAsync(objectId);                   /*ultimo punto de interrupcion funcional*/
 
 
                 /*MessageBox.Show(firma.ImgBase64);*/
@@ -130,7 +131,7 @@ namespace MarkAddIn
 
                 
 
-                /*nos quedamos aqu*/
+            
                 SignatureOverture.ActivarInserccionPorClic(firmaBytes);
 
 
@@ -138,6 +139,9 @@ namespace MarkAddIn
                 mainWindow?.Close();
 
 
+
+                File.Delete(tempPath);
+           
 
                 if (firma == null)
                 {
@@ -153,7 +157,7 @@ namespace MarkAddIn
                 MessageBox.Show($"Error inesperado: {ex.Message}");
             }
 
-            /*no service for type MarkAddin.SignaturOverture has been registered*/
+           
         }
 
     }

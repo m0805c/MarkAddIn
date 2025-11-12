@@ -95,7 +95,9 @@ namespace Mark.Client
         /*Request: DTO -> Json, entregamos un Json que incluye el oId*/
         /*POST/api/Firmas lo procesa, extrae el oId, lo empata y guarda la firma*/
         /*entregables: FirmaPostDTO y objectIdAzure*/           /*POST/api/Firmas*/
-        public async Task CrearFirmaAsync (string objectIdAzure, FirmaPostDTO nuevaFirma)
+        
+        
+        public async Task CrearFirmaAsync (FirmaPostDTO nuevaFirma)
         {
             AgregarEncabezados();
            
@@ -118,7 +120,6 @@ namespace Mark.Client
         /*entegables: objectIdAzure*/               /*GET/api/Firmas/{objectIdAzure}*/
         public async Task<FirmaRetornadaDTO> ObtenerFirmaAsync(string objectIdAzure)
         {
-
             AgregarEncabezados();
 
             var url = $"{_baseUrl}/Firmas/{objectIdAzure}";
@@ -132,21 +133,11 @@ namespace Mark.Client
 
             var contenido = await response.Content.ReadAsStringAsync();
 
-             contenido = await response.Content.ReadAsStringAsync();
+            MessageBox.Show(contenido);
 
-
-            /*Clipboard.SetText(contenido);
-            MessageBox.Show(contenido);*/
-
-            /*aqui es el error*/
-            /*var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);*/
-
-            var firmas = JsonConvert.DeserializeObject<List<FirmaRetornadaDTO>>(contenido);
-            var firmaRetornada = firmas?.FirstOrDefault();
+            // Si la API retorna un solo objeto FirmaRetornadaDTO
+            var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);
             return firmaRetornada;
-
-
-            
         }
     
       
