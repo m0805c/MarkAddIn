@@ -52,7 +52,7 @@ namespace Mark.Client
         public async Task<UsuarioRetornadoDTO> ObtenerUsuarioAsync(string objectIdAzure)                        /*funciona*/
         {
             AgregarEncabezados();
-            var url = $"{_baseUrl}/Usuarios/{objectIdAzure}";
+           var url = $"{_baseUrl}/Usuarios/{objectIdAzure}";
             var response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
@@ -97,14 +97,15 @@ namespace Mark.Client
         /*entregables: FirmaPostDTO y objectIdAzure*/           /*POST/api/Firmas*/
         
         
-        public async Task CrearFirmaAsync (FirmaPostDTO nuevaFirma)
+        /*
+        public async Task CrearFirmaAsync (PPFirmaDTO nuevaFirma)
         {
             AgregarEncabezados();
            
             var json = JsonConvert.SerializeObject(nuevaFirma);
             var content = new StringContent (json, Encoding.UTF8, "application/json");
 
-            var url = $"{_baseUrl}/Firmas";                      /*revisar si es correcta la URL*/
+            var url = $"{_baseUrl}/Firmas";                      /*revisar si es correcta la URL
             var response = await _httpClient.PostAsync(url, content);
 
             if (!response.IsSuccessStatusCode)
@@ -113,10 +114,35 @@ namespace Mark.Client
                 throw new Exception($"Error al crear firma: {response.StatusCode}\n{detalle}");
             }
 
+        }*/
+
+        
+
+
+
+        public async Task GuardarFirmaAsync(PPFirmaDTO firmaDto)
+        {
+            // Siempre agregar token y encabezados
+            AgregarEncabezados();
+
+            var json = JsonConvert.SerializeObject(firmaDto);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = $"{_baseUrl}/Firmas";   
+
+            var response = await _httpClient.PostAsync(url, content);
+
+            // Manejo de error estándar
+            if (!response.IsSuccessStatusCode)
+            {
+                var detalle = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Error al guardar firma: {response.StatusCode}\n{detalle}");
+            }
         }
 
 
-        
+
+
         /*entegables: objectIdAzure*/               /*GET/api/Firmas/{objectIdAzure}*/
         public async Task<FirmaRetornadaDTO> ObtenerFirmaAsync(string objectIdAzure)
         {
@@ -145,7 +171,7 @@ namespace Mark.Client
 
 
         /*entregables: FirmaPutDTO y objectIdAzure*/            /*PUT/api/Firmas/{objectIdAzure}*/
-        public async Task ActualizarFirmaAsync(string objectIdAzure, FirmaPutDTO firmaActualizada)
+        public async Task ActualizarFirmaAsync(string objectIdAzure, PPFirmaDTO firmaActualizada)
         {
             AgregarEncabezados();
 

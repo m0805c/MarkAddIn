@@ -108,14 +108,11 @@ namespace MarkAddIn
 
 
 
-                var firma = await apiService.ObtenerFirmaAsync(objectId);                   /*ultimo punto de interrupcion funcional*/
+                var firma = await apiService.ObtenerFirmaAsync(objectId);                   
 
 
-                /*MessageBox.Show(firma.ImgBase64);*/
 
-                var firmaRetornada = firma.ImgBase64;   /*empezar a trabajar con firmaRetornada*/
-
-               /*cambiamos a [] */
+                var firmaRetornada = firma.ImgBase64;   
 
                 var firmaRetornadaBytes = Convert.FromBase64String(firmaRetornada);
 

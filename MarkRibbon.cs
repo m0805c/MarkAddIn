@@ -5,6 +5,7 @@ using Microsoft.Office.Tools.Ribbon;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace MarkAddIn
@@ -75,6 +76,15 @@ namespace MarkAddIn
                 {
                     var usuarioExistente = await apiService.ObtenerUsuarioAsync(objectId);
 
+
+
+                    /*se va a usar .oId para sacar la firma y con el vamos a trabajar las solicitudes, primero put y luegi post*/
+
+
+                    MessageBox.Show(usuarioExistente.Nombre, usuarioExistente.ObjectIdAzure);
+                    
+
+
                     if (usuarioExistente != null)
                     {
                         MessageBox.Show($"Bienvenido, {nombre}.");
@@ -82,6 +92,8 @@ namespace MarkAddIn
                     else
                     {
                       
+                        
+
                         await apiService.CrearUsuarioAsync(objectId, nuevoUsuario);
                         MessageBox.Show($"El usuario de {nombre} creado correctamente.");
                     }

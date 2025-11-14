@@ -501,7 +501,7 @@
     <Compile Include="example.xaml.cs">
       <DependentUpon>example.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FirmaPostDTO.cs" />
+    <Compile Include="PPFirmaDTO.cs" />
     <Compile Include="FirmaPutDTO.cs" />
     <Compile Include="FirmaRetornadaDTO.cs" />
     <Compile Include="HomeView.xaml.cs">
