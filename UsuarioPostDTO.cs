@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarkAddIn
 {
-    public class UsuarioPostDTO /*DTO que va a enviar la info del usuario*/
+    public class UsuarioPostDTO 
     {
         public string? Nombre { get; set; }
 

@@ -22,11 +22,6 @@ namespace MarkAddIn
 
         public static string OidReferencia;
 
-        /*crear instancias para referenciar el oid*/
-
-
-
-
 
         public SavePrompt()
         {
@@ -46,7 +41,7 @@ namespace MarkAddIn
                 bitmap.StreamSource = ms;
                 bitmap.EndInit();
 
-                /*ajustar la imagen sin recortar con el uniform*/
+     
                 PreviewImage.Source = bitmap;
                 PreviewImage.Stretch = System.Windows.Media.Stretch.Uniform;
                 PreviewImage.HorizontalAlignment = HorizontalAlignment.Center;
@@ -93,7 +88,7 @@ namespace MarkAddIn
                     ObjectIdAzure = usuarioInfo.ObjectIdAzure
                 };
 
-                /*en vez de que el cliente determine, solo le da la opcion de "guardarla", el servidor determina si se guarda o no*/
+              
                 await apiService.GuardarFirmaAsync(PPFirma);
 
             

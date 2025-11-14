@@ -37,7 +37,7 @@ namespace MarkAddIn
             NombreUsuario = UserName;
 
 
-            //NombreUsuario = nombre;
+       
         }
 
         public void CleanUp ()

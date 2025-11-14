@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MarkAddIn
 {
-    // Clase para los argumentos del evento de protección
+
     public class ProtectionEventArgs : EventArgs
     {
         public Excel.Worksheet Worksheet { get; set; }
@@ -18,7 +18,7 @@ namespace MarkAddIn
         public DateTime Timestamp { get; set; }
     }
 
-    // Clase para los argumentos del evento de inserción de firma
+  
     public class SignatureInsertedEventArgs : EventArgs
     {
         public string UserName { get; set; }

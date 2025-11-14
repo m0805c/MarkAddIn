@@ -19,7 +19,7 @@ namespace MarkAddIn
 
             {
 
-                /*levantamiento de la direccion de la api*/
+            
                 using HttpResponseMessage respuesta = await client.GetAsync("https://api.github.com/repos/dotnet/AspNetCore.Docs/branches/main");
 
 

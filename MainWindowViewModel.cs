@@ -1,5 +1,4 @@
-﻿/* MainWindow es la ventana principal que contiene un ContentControl (o similar). Ese ContentControl está enlazado (Binding) a la propiedad CurrentViewModel de tu MainWindowViewModel.*/
-
+﻿
 
 using Newtonsoft.Json.Bson;
 using System;
@@ -41,7 +40,6 @@ namespace MarkAddIn
 
 
 
-        /*aqui se le asigna valor a current view por primera vez*/
         public MainWindowViewModel()
         {
             CurrentView = new HomeView();
@@ -50,8 +48,8 @@ namespace MarkAddIn
         private UserControl _currentView;
         public UserControl CurrentView
         {
-            get => _currentView;                                /*se quito la condicional y se dejó la asignacion del 
-                                                                 * homeview por defecto*/
+            get => _currentView;                               
+                                                                
             set
             {
                 _currentView = value;

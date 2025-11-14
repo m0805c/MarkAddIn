@@ -16,15 +16,12 @@ using System.Windows;
 using Mark;
 
 
-
-/*es aqui donde debe dispararse la solicitud para crear o obtener el usuario*/
-
 namespace Mark.Client
 {
 
     public class AuthenticationManager : Window
     {
-        // se leé la información de la aplicación desde el archivo de configuración
+ 
 
         private readonly IPublicClientApplication _mark;
         private readonly string[] _scopes;
@@ -33,7 +30,7 @@ namespace Mark.Client
         public string AccessToken => ultimaAutenticacion?.AccessToken;
         public string ObjectId => ultimaAutenticacion?.Account?.HomeAccountId?.ObjectId;
 
-        // representante de la aplicación
+ 
         public AuthenticationManager()
         {
             var aadInstance = ConfigurationManager.AppSettings["ida:AADInstance"];
@@ -44,7 +41,6 @@ namespace Mark.Client
 
             
 
-            //ya no es necesario inicializarse desde el app.xaml.cs
 
             _mark = PublicClientApplicationBuilder.Create(IdCliente)
                 .WithAuthority(conAutoridad)
@@ -52,21 +48,20 @@ namespace Mark.Client
                 .Build();
 
 
-            // variable para la creación de propiedades de almacenamiento
+          
 
             var storageProperties = new StorageCreationPropertiesBuilder(
                         "MarkCache",
                         Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))
                         .Build();
 
-            // variable para la creación de almacenador de credenciales de caché
+      
 
             var cacheHelper = MsalCacheHelper.CreateAsync(storageProperties).GetAwaiter().GetResult();
             cacheHelper.RegisterCache(_mark.UserTokenCache);
         }
 
 
-        //prueba con bool false al 09/08
 
         
         public async Task<AuthenticationResult> AcquireTokenAsync(bool forceLogin = false)
@@ -117,7 +112,7 @@ namespace Mark.Client
 
         }
 
-        // metodo para cerrar sesión 
+
         public async Task SignOutAsync()
         {
             var cuentas = await _mark.GetAccountsAsync();

@@ -515,8 +515,6 @@
     </Compile>
     <Compile Include="Bootstraper.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="ModelHandler.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="SavePrompt.xaml.cs">
       <DependentUpon>SavePrompt.xaml</DependentUpon>
     </Compile>
@@ -524,7 +522,6 @@
     <Compile Include="SignatureInserter.cs" />
     <Compile Include="SignatureOverture.cs" />
     <Compile Include="SignatureOverture2.cs" />
-    <Compile Include="TextToPNG.cs" />
     <Compile Include="TokenHander.cs" />
     <Compile Include="TokenManager.cs" />
     <Compile Include="AuthenticationManager.cs" />

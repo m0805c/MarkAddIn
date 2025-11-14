@@ -13,13 +13,13 @@ namespace MarkAddIn
     {
         public readonly DrawSignatureViewModel _drawSignatureViewModel;
 
-        // Firma temporal en bytes
+
         public static class FirmaTemporal
         {
             public static byte[] Bytes { get; set; }
         }
 
-        // Guardar trazos
+  
         public static class AlmacenarTrazos
         {
             private static StrokeCollection _signaturestrokes;
@@ -78,34 +78,34 @@ namespace MarkAddIn
 
             try
             {
-                /*captura unicamente los trazos*/
+   
                 var strokes = Board.Strokes;
                 Rect bounds = strokes.GetBounds();
                 double margin = 10;
                 bounds.Inflate(margin, margin);
 
-                /*crea un ink canvas temporal solo con los trazos*/
+               
                 var tempCanvas = new InkCanvas();
                 tempCanvas.Background = Brushes.Transparent;
                 tempCanvas.Width = bounds.Width;
                 tempCanvas.Height = bounds.Height;
 
-                /* Clonar y mover los trazos para alinearlos a 0,0*/
+              
                 var clonedStrokes = strokes.Select(s => s.Clone()).ToList();
                 foreach (var s in clonedStrokes)
                 {
-                    /* Transformación corregida con applyToStylusTip*/
+                  
                     s.Transform(new Matrix(1, 0, 0, 1, -bounds.X, -bounds.Y), false);
                     tempCanvas.Strokes.Add(s);
                 }
 
-                /*ink canvas a bitmap*/
+          
                 var rtb = new RenderTargetBitmap((int)bounds.Width, (int)bounds.Height, 96, 96, PixelFormats.Pbgra32);
                 tempCanvas.Measure(new Size(bounds.Width, bounds.Height));
                 tempCanvas.Arrange(new Rect(new Size(bounds.Width, bounds.Height)));
                 rtb.Render(tempCanvas);
 
-                /*bitmap a png*/
+        
 
                 byte[] firmaEnBytes;
                 using (var ms = new MemoryStream())
@@ -116,7 +116,7 @@ namespace MarkAddIn
                     firmaEnBytes = ms.ToArray();
                 }
 
-                /*guardar bytes en firma temporal*/
+               
                 FirmaTemporal.Bytes = firmaEnBytes;
 
                 MessageBox.Show("Firma capturada y convertida a PNG correctamente.",
@@ -132,13 +132,13 @@ namespace MarkAddIn
 
 
 
-                // Convertir los bytes a una cadena Base64
+              
                 string firmaBase64 = Convert.ToBase64String(firmaEnBytes);
 
 
 
 
-                // Copiar al portapapeles
+               
                 Clipboard.SetText(firmaBase64);
 
                 

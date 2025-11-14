@@ -16,11 +16,11 @@ namespace Mark.Client
 
             var servicios = new ServiceCollection();
 
-            // Servicios principales
+    
             servicios.AddSingleton<AuthenticationManager>();
             servicios.AddSingleton<TokenManager>();
             servicios.AddSingleton<TokenHander>();
-            servicios.AddSingleton<ApiService>(); // servicio registrado
+            servicios.AddSingleton<ApiService>(); 
 
             // Servicios de vistas
             servicios.AddSingleton<FormHost>();
@@ -28,9 +28,9 @@ namespace Mark.Client
             servicios.AddTransient<MainWindow>();
             servicios.AddTransient<DrawSignature>();
             servicios.AddTransient<SavePrompt>();
-            servicios.AddTransient<SignatureInserter>(); // clase que inserta la firma
+            servicios.AddTransient<SignatureInserter>(); 
+           
 
-            // ViewModels
             servicios.AddSingleton<MainWindowViewModel>();
             servicios.AddTransient<HomeViewViewModel>();
             servicios.AddTransient<DrawSignatureViewModel>();

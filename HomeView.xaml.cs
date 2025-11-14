@@ -33,7 +33,7 @@ namespace MarkAddIn
         private readonly HomeViewViewModel _HomeViewviewModel;
         public static AuthenticationResult resultado;
         public static JwtSecurityToken jwtToken;
-        public static string nombre;            /*hay que darle valor dentro del metodo de aprobar*/
+        public static string nombre;            
         public static string email;
         public static string objectId;
         private static string firmaRetornadaBytes;
@@ -68,10 +68,10 @@ namespace MarkAddIn
 
         public void FirmaBtn_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Application.Current.Windows            /*accede a la coleccion de ventanas en MainWindow*/
+            var mainWindow = Application.Current.Windows           
                 .OfType<MainWindow>().FirstOrDefault();
              
-            if (mainWindow != null)   /*si ya se esta proyectando HomeView*/          
+            if (mainWindow != null)          
             {
                 if (mainWindow.DataContext is MainWindowViewModel mainWindowViewModel)
                 {

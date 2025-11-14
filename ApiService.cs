@@ -11,12 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 
-/*revisar las url de cada llamada*/
-/*los gets no necesitan manejar DTOs de entrega*/
 
-
-
-/*controladores de usuario ya funcionan, ya solo hay que revisar los de firmas*/
 
 namespace Mark.Client
 {
@@ -43,13 +38,7 @@ namespace Mark.Client
 
 
 
-
-        /*Request: json -> DTO*, se accede desde el Ribbon para confirmar que se encontró el usuario, 
-          no necesita DTO de entrega porque el objectId va en la URL 
-        
-         Entregamos oId en la URL -> nos devuelve un Json y deserializamos en UsuarioRetornadoDTO*/
-        /*entregable: objectIdAzure*/       /*GET/api/Usuarios/{objectIdAzure}*/
-        public async Task<UsuarioRetornadoDTO> ObtenerUsuarioAsync(string objectIdAzure)                        /*funciona*/
+        public async Task<UsuarioRetornadoDTO> ObtenerUsuarioAsync(string objectIdAzure)                       
         {
             AgregarEncabezados();
            var url = $"{_baseUrl}/Usuarios/{objectIdAzure}";
@@ -70,10 +59,6 @@ namespace Mark.Client
 
 
 
-        /*Request: DTO -> Json, entregamos un Json Serializado con Nombre, Email, y oId*/
-        /*El POST/api/Usuarios/ recibe un cuerpo Json, el cual extrae el oId y encuentra al usuario*/
-        /*entregables: UsuarioPostDTO*/         /*POST/api/Usuarios/{objectIdAzure}*/
-         
         public async Task CrearUsuarioAsync(string objectIdAzure, UsuarioPostDTO nuevoUsuario)
         {
             AgregarEncabezados();
@@ -81,7 +66,7 @@ namespace Mark.Client
             var json = JsonConvert.SerializeObject(nuevoUsuario);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var url = $"{_baseUrl}/Usuarios?ObjectIdAzure={objectIdAzure}"; /*revisar si es correcta la URL*/
+            var url = $"{_baseUrl}/Usuarios?ObjectIdAzure={objectIdAzure}"; 
             var response = await _httpClient.PostAsync(url, content);
 
             if (!response.IsSuccessStatusCode)
@@ -92,37 +77,10 @@ namespace Mark.Client
 
         }
 
-        /*Request: DTO -> Json, entregamos un Json que incluye el oId*/
-        /*POST/api/Firmas lo procesa, extrae el oId, lo empata y guarda la firma*/
-        /*entregables: FirmaPostDTO y objectIdAzure*/           /*POST/api/Firmas*/
-        
-        
-        /*
-        public async Task CrearFirmaAsync (PPFirmaDTO nuevaFirma)
-        {
-            AgregarEncabezados();
-           
-            var json = JsonConvert.SerializeObject(nuevaFirma);
-            var content = new StringContent (json, Encoding.UTF8, "application/json");
-
-            var url = $"{_baseUrl}/Firmas";                      /*revisar si es correcta la URL
-            var response = await _httpClient.PostAsync(url, content);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                var detalle = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Error al crear firma: {response.StatusCode}\n{detalle}");
-            }
-
-        }*/
-
-        
-
-
-
+  
         public async Task GuardarFirmaAsync(PPFirmaDTO firmaDto)
         {
-            // Siempre agregar token y encabezados
+         
             AgregarEncabezados();
 
             var json = JsonConvert.SerializeObject(firmaDto);
@@ -132,7 +90,7 @@ namespace Mark.Client
 
             var response = await _httpClient.PostAsync(url, content);
 
-            // Manejo de error estándar
+       
             if (!response.IsSuccessStatusCode)
             {
                 var detalle = await response.Content.ReadAsStringAsync();
@@ -142,8 +100,6 @@ namespace Mark.Client
 
 
 
-
-        /*entegables: objectIdAzure*/               /*GET/api/Firmas/{objectIdAzure}*/
         public async Task<FirmaRetornadaDTO> ObtenerFirmaAsync(string objectIdAzure)
         {
             AgregarEncabezados();
@@ -161,16 +117,12 @@ namespace Mark.Client
 
             MessageBox.Show(contenido);
 
-            // Si la API retorna un solo objeto FirmaRetornadaDTO
+         
             var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);
             return firmaRetornada;
         }
     
       
-
-
-
-        /*entregables: FirmaPutDTO y objectIdAzure*/            /*PUT/api/Firmas/{objectIdAzure}*/
         public async Task ActualizarFirmaAsync(string objectIdAzure, PPFirmaDTO firmaActualizada)
         {
             AgregarEncabezados();

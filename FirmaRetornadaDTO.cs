@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarkAddIn
 {
-    public class FirmaRetornadaDTO      /*GET/api/Firmas/{objectIdAzure}*/
+    public class FirmaRetornadaDTO      
     {
             public int IdFirma { get; set; }
 
