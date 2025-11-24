@@ -81,13 +81,19 @@ namespace MarkAddIn
                     /*se va a usar .oId para sacar la firma y con el vamos a trabajar las solicitudes, primero put y luegi post*/
 
 
-                    MessageBox.Show(usuarioExistente.Nombre, usuarioExistente.ObjectIdAzure);
+                   
                     
 
 
-                    if (usuarioExistente != null)
+                    if (usuarioExistente != null)       /*cambios */
                     {
-                        MessageBox.Show($"Bienvenido, {nombre}.");
+                        
+
+                        MessageBox.Show($"Bienvenido, {nombre}",
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
                     }
                     else
                     {
@@ -131,7 +137,9 @@ namespace MarkAddIn
             }
             catch (Exception error)
             {
-                MessageBox.Show($"Error general durante el inicio de sesión: {error.Message}");
+                MessageBox.Show($"Error general durante el inicio de sesión: {error.Message}", "Información" , MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
         }
     }

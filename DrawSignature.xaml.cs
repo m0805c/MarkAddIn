@@ -125,10 +125,6 @@ namespace MarkAddIn
 
 
 
-                MessageBox.Show($"Bytes capturados: {string.Join(", ", firmaEnBytes)}",
-                "Bytes de la firma", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
 
 
 
@@ -144,14 +140,6 @@ namespace MarkAddIn
                 
 
 
-                MessageBox.Show(
-                    "✓ Base64 copiado al portapapeles\n\n" +
-                    $"Longitud: {firmaBase64.Length} caracteres\n\n" +
-                    "Pégalo directamente en Swagger/Postman",
-                    "Firma en Base64",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
-                );
 
 
                 Board.Strokes.Clear();

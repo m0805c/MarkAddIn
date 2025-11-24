@@ -38,7 +38,7 @@
 
             <!-- Imagen + Descripción -->
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\draw.png"
+                <Image Source="/MarkAddIn;component/Resources/draw.png"
                        Stretch="Uniform"
                        MaxWidth="250"
                        Margin="0,0,0,10"/>
@@ -81,7 +81,7 @@
 
             <!-- Imagen + Descripción -->
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\approve.png"
+                <Image Source="/MarkAddIn;component/Resources/approve.png"
                        Stretch="Uniform"
                        MaxWidth="220"
                        Margin="0,0,0,10"/>

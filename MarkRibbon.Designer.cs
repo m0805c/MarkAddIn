@@ -34,32 +34,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tab1 = this.Factory.CreateRibbonTab();
-            this.Complementos = this.Factory.CreateRibbonGroup();
+            Microsoft.Office.Tools.Ribbon.RibbonGroup Complementos;
             this.button1 = this.Factory.CreateRibbonButton();
+            this.tab1 = this.Factory.CreateRibbonTab();
+            Complementos = this.Factory.CreateRibbonGroup();
+            Complementos.SuspendLayout();
             this.tab1.SuspendLayout();
-            this.Complementos.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tab1
-            // 
-            this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.Complementos);
-            this.tab1.Label = "TabAddIns";
-            this.tab1.Name = "tab1";
             // 
             // Complementos
             // 
-            this.Complementos.Items.Add(this.button1);
-            this.Complementos.Label = "Complementos";
-            this.Complementos.Name = "Complementos";
+            Complementos.Items.Add(this.button1);
+            Complementos.Label = "Complementos";
+            Complementos.Name = "Complementos";
             // 
             // button1
             // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Image = global::MarkAddIn.Properties.Resources.isoAreya;
             this.button1.Label = "Mark";
             this.button1.Name = "button1";
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
+            // 
+            // tab1
+            // 
+            this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
+            this.tab1.Groups.Add(Complementos);
+            this.tab1.Label = "TabAddIns";
+            this.tab1.Name = "tab1";
             // 
             // MarkRibbon
             // 
@@ -67,10 +70,10 @@
             this.RibbonType = "Microsoft.Excel.Workbook";
             this.Tabs.Add(this.tab1);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.MarkRibbon_Load);
+            Complementos.ResumeLayout(false);
+            Complementos.PerformLayout();
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
-            this.Complementos.ResumeLayout(false);
-            this.Complementos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -78,8 +81,7 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup Complementos;
-        public Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        protected Microsoft.Office.Tools.Ribbon.RibbonButton button1;
     }
 
     partial class ThisRibbonCollection

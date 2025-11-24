@@ -42,7 +42,7 @@
                 Margin="13,140,0,0" 
                 VerticalAlignment="Top"
                 Click="BackToHomeBtn_Click" Background="LightGray" BorderBrush="LightGray">
-            <Image Source="C:\Users\andres.chavez\source\repos\m0805c\MarkAddIn\Resources\left-arrow.png" Width="44" OpacityMask="Black"></Image>
+            <Image Source="/MarkAddIn;component/Resources/left-arrow.png" Width="44" OpacityMask="Black"></Image>
            
         </Button>
             

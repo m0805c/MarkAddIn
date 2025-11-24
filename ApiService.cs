@@ -18,7 +18,7 @@ namespace Mark.Client
     public class ApiService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://localhost:7189/api";/*private readonly string _baseUrl = "https://localhost:7189/api";
+        private readonly string _baseUrl = "http://10.236.253.21:5000/api";/*private readonly string _baseUrl = "https://localhost:7189/api";
 */
         private readonly TokenManager _tokenManager;
 
@@ -115,9 +115,7 @@ namespace Mark.Client
 
             var contenido = await response.Content.ReadAsStringAsync();
 
-            MessageBox.Show(contenido);
-
-         
+           
             var firmaRetornada = JsonConvert.DeserializeObject<FirmaRetornadaDTO>(contenido);
             return firmaRetornada;
         }

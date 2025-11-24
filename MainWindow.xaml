@@ -46,7 +46,7 @@
         <Grid x:Name="MainTopGrid"
               Background="LightGray"
               Grid.Row="1">
-            <Image Source="C:\Users\andres.chavez\source\repos\MarkAddIn\Resources\Logo_Areya.png"
+            <Image Source="/MarkAddIn;component/Resources/Logo_Areya.png"
                    Width="180"
                    HorizontalAlignment="Left"
                    Margin="20,0,0,0"/>
